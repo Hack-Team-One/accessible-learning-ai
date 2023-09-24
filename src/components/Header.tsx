@@ -12,12 +12,17 @@ function Header() {
   const [textSizePrimary, setTextSizePrimary] = useRecoilState(textSizePrimaryState);
 
   return (
-    <header className="flex items-center">
-      <h1 className="text-blue-900 font-bold p-4 ml-2.5">Accessible Learning AI</h1>
-      <Link href="/learn">
-        <p className="p-2">Learn</p>
-      </Link>
+    <div>
+    <header>
+      
     </header>
+    {/* // <header className="flex items-center">
+    //   <h1 className="text-blue-900 font-bold p-4 ml-2.5">Accessible Learning AI</h1>
+    //   <Link href="/learn">
+    //     <p className="p-2">Learn</p>
+    //   </Link>
+    // </header> */}
+    </div>
   );
 }
 
