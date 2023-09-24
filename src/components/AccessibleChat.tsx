@@ -9,6 +9,8 @@ import {
 } from '../states/textState';
 import { sendMessageToChatGPT } from '../api/chatGPT';
 
+const CHATGPT_MODEL: string = process.env.NEXT_PUBLIC_CHATGPT_MODEL || 'gpt-3.5-turbo';
+
 const AccessibleChat: React.FC = () => {
   const [textColorPrimary, setTextColorPrimary] = useRecoilState(textColorPrimaryState);
   const [textFontPrimary, setTextFontPrimary] = useRecoilState(textFontPrimaryState);
@@ -17,6 +19,9 @@ const AccessibleChat: React.FC = () => {
   const [chatGPTResponse, setChatGPTResponse] = useState('');
 
   const handleSendMessage = async () => {
+
+    // VALIDATE THE TOKEN COUNT
+    
     try {
       const response = await sendMessageToChatGPT(userInput);
       if (response) setChatGPTResponse(response);
@@ -57,7 +62,7 @@ const AccessibleChat: React.FC = () => {
         </Button>
       </div>
       <div className="text-center text-xs p-2">
-        ChatGPT may produce inaccurate information about people, places, or facts. Using {process.env.CHATGPT_MODEL}.
+        ChatGPT may produce inaccurate information about people, places, or facts. Using {CHATGPT_MODEL}.
       </div>
     </div>
   );
