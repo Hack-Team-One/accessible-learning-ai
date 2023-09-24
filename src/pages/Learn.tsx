@@ -13,7 +13,6 @@ const Learn: React.FC = () => {
 
   return (
     <div>
-      {/* We could display the chatGPT UI here */}
     </div>
   );
 };
