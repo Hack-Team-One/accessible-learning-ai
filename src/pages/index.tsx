@@ -1,10 +1,16 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { isLoggedInState } from '../states/authState';
+import {
+  textColorPrimaryState,
+  textFontPrimaryState,
+  textSizePrimaryState,
+} from '../states/textState';
 import Header from '../components/Header';
 
 const Home: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState); // we may not use this state, just an example
+  const [textColorPrimary, setTextColorPrimary] = useRecoilState(textColorPrimaryState);
+  const [textFontPrimary, setTextFontPrimary] = useRecoilState(textFontPrimaryState);
+  const [textSizePrimary, setTextSizePrimary] = useRecoilState(textSizePrimaryState);
 
   return (
     <div>

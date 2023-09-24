@@ -1,9 +1,15 @@
 import { useRecoilState } from 'recoil';
-import { isLoggedInState } from '../states/authState';
+import {
+  textColorPrimaryState,
+  textFontPrimaryState,
+  textSizePrimaryState,
+} from '../states/textState';
 import Link from 'next/link';
 
 function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState); // we may not use this state, just an example
+  const [textColorPrimary, setTextColorPrimary] = useRecoilState(textColorPrimaryState);
+  const [textFontPrimary, setTextFontPrimary] = useRecoilState(textFontPrimaryState);
+  const [textSizePrimary, setTextSizePrimary] = useRecoilState(textSizePrimaryState);
 
   return (
     <header className="flex items-center">
