@@ -11,15 +11,17 @@ const openai = new OpenAI({
 
 export const sendMessageToChatGPT = async (message: string) => {
   // VALIDATE THE TOKEN COUNT BEFORE SENDING THE MESSAGE
+
   try {
     const params: OpenAI.Chat.ChatCompletionCreateParams = {
       messages: [{ role: 'user', content: message }],
       model: CHATGPT_MODEL,
       max_tokens: MAX_TOKEN_LIMIT,
+      temperature: 0.6,
     };
     const chatCompletion: OpenAI.Chat.ChatCompletion = await openai.chat.completions.create(params);
 
-    return chatCompletion.choices[0];
+    return chatCompletion; // How do we access the response here?
   } catch (error) {
     console.error('Error sending message to ChatGPT:', error);
 
