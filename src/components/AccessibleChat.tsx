@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { Button, Input, Typography, Box } from '@mui/base';
+import { Button, Box } from '@mui/base';
+import TextInput from '../components/TextInput'; // Import the custom TextInput component
 import {
   textColorPrimaryState,
   textFontPrimaryState,
   textSizePrimaryState,
 } from '../states/textState';
 import { sendMessageToChatGPT } from '../api/chatGPT';
-
-const CHATGPT_VERSION = process.env.NEXT_PUBLIC_CHATGPT_VERSION || 'Unknown Version';
 
 const AccessibleChat: React.FC = () => {
   const [textColorPrimary, setTextColorPrimary] = useRecoilState(textColorPrimaryState);
@@ -27,33 +26,30 @@ const AccessibleChat: React.FC = () => {
   };
 
   const handleRegenerate = async () => {
-    // For now, we'll just resend the same input. In a more advanced setup, you might want to adjust the prompt or parameters.
     handleSendMessage();
   };
 
   return (
-    <Box display="flex" flexDirection="column" height="400px" border="1px solid gray" borderRadius="5px" overflow="auto">
-      <Box flex="1" padding="16px">
-        <Typography>{chatGPTResponse}</Typography>
+    <Box className="flex flex-col h-[400px] border border-gray-400 rounded overflow-auto">
+      <Box className="flex-1 p-4">
+        <TextInput value={chatGPTResponse} onChange={setChatGPTResponse} />
       </Box>
-      <Box display="flex" justifyContent="space-between" alignItems="center" padding="16px">
-        <Input
-          variant="outlined"
-          fullWidth
+      <Box className="flex justify-between items-center p-4">
+        <TextInput
           value={userInput}
-          onChange={(e) => setUserInput(e.target.value)}
+          onChange={setUserInput}
           placeholder="Type your message..."
         />
-        <Button variant="contained" color="primary" onClick={handleSendMessage}>
+        <Button className="bg-blue-500 text-white" onClick={handleSendMessage}>
           Send
         </Button>
-        <Button variant="outlined" color="primary" onClick={handleRegenerate}>
+        <Button className="border border-blue-500 text-blue-500" onClick={handleRegenerate}>
           Regenerate
         </Button>
       </Box>
-      <Typography variant="caption" align="center">
-        ChatGPT may produce inaccurate information about people, places, or facts. ChatGPT {CHATGPT_VERSION}
-      </Typography>
+      <Box className="text-center text-xs p-2">
+        ChatGPT may produce inaccurate information about people, places, or facts. Using {process.env.CHATGPT_MODEL}.
+      </Box>
     </Box>
   );
 };
