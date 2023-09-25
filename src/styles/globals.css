@@ -4,7 +4,7 @@
 
 @layer base {
   .modal-button {
-    @apply absolute bottom-3 right-3 bg-access-icon
+    @apply absolute bottom-3 right-3 hover:shadow-xl rounded-full
   }
 }
 

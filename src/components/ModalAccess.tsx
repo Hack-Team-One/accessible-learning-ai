@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Modal } from '@mui/base/Modal';
 import { Button } from '@mui/base/Button';
 import { Box, styled, Theme } from '@mui/system';
-import access_img from '../images/accessibility-symbol.png'
+import access_img from '../images/accessibility-symbol-2.png'
 import Image from 'next/image';
 
 const ModalAccess: React.FC = () => {
@@ -24,7 +24,7 @@ const ModalAccess: React.FC = () => {
         onClick={handleOpen} 
         className="modal-button"
       >
-        <Image src={access_img} alt="Accessbility Icon" className="h-9 w-10"/>
+        <Image src={access_img} alt="Accessbility Icon" className="h-9 w-9 rounded-full"/>
         {/* Open modal */}
       </Button>
       <StyledModal
