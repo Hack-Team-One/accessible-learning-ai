@@ -3,6 +3,8 @@ import clsx from 'clsx';
 import { Modal } from '@mui/base/Modal';
 import { Button } from '@mui/base/Button';
 import { Box, styled, Theme } from '@mui/system';
+import access_img from '../images/accessibility-symbol.png'
+import Image from 'next/image';
 
 const ModalAccess: React.FC = () => {
   const [open, setOpen] = React.useState(false);
@@ -17,9 +19,14 @@ const ModalAccess: React.FC = () => {
 
   return (
     <div className="static">
-      <TriggerButton type="button" onClick={handleOpen} className="absolute bottom-3 right-3">
-        Open modal
-      </TriggerButton>
+      <Button 
+        type="button" 
+        onClick={handleOpen} 
+        className="modal-button"
+      >
+        <Image src={access_img} alt="Accessbility Icon" className="h-9 w-10"/>
+        {/* Open modal */}
+      </Button>
       <StyledModal
         className="absolute bottom-3 right-3"
         aria-labelledby="unstyled-modal-title"
@@ -99,26 +106,26 @@ const style = (theme: Theme) => ({
 
 const TriggerButton = styled('button')(
   ({ theme }) => `
-  font-family: IBM Plex Sans, sans-serif;
-  font-size: 0.875rem;
-  font-weight: 600;
-  box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
-  border-radius: 12px;
-  padding: 6px 12px;
-  line-height: 1.5;
-  background: transparent;
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
-  color: ${theme.palette.mode === 'dark' ? grey[100] : grey[900]};
+  // font-family: IBM Plex Sans, sans-serif;
+  // font-size: 0.875rem;
+  // font-weight: 600;
+  // box-sizing: border-box;
+  // min-height: calc(1.5em + 22px);
+  // border-radius: 12px;
+  // padding: 6px 12px;
+  // line-height: 1.5;
+  // background: transparent;
+  // border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
+  // color: ${theme.palette.mode === 'dark' ? grey[100] : grey[900]};
 
-  &:hover {
-    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
-    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
-  }
+  // &:hover {
+  //   background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+  //   border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
+  // }
 
-  &:focus-visible {
-    border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
-  }
-  `,
+  // &:focus-visible {
+  //   border-color: ${blue[400]};
+  //   outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
+  // }
+  // `,
 );
