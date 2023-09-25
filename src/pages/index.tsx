@@ -1,10 +1,15 @@
 import React from 'react';
+import Head from 'next/head';
 import Header from '../components/Header';
 
 const Home: React.FC = () => {
 
   return (
     <div>
+      <Head>
+        <title>Accessible Learning AI</title>
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+      </Head>
       <Header />
     </div>
   );

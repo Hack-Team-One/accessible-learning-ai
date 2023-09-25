@@ -5,7 +5,7 @@ const Learn: React.FC = () => {
 
   return (
     <div>
-      <AccessibleChat/>
+      {/* <AccessibleChat /> */}
     </div>
   );
 };
