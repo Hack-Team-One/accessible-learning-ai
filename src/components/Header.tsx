@@ -14,10 +14,10 @@ function Header() {
 
   return (
     <>
-      <header className="grid grid-rows-3 items-center justify-center">
+      <header className="grid grid-rows-5 items-center justify-center">
         {/* <SelectList /> */}
-        <p className="row-start-2 text-3xl font-bold text-center">Accessible Learning</p>
-        <p className="row-start-3 text-3xl font-bold text-center bg-gradient-to-r from-yellow-200 via-amber-400 to-orange-500 text-transparent bg-clip-text">using AI</p>
+        <p className="row-start-4 text-3xl font-bold text-center">Accessible Learning</p>
+        <p className="row-start-5 text-3xl font-bold text-center bg-gradient-to-r from-yellow-200 via-amber-400 to-orange-500 text-transparent bg-clip-text">using AI</p>
         {/* <Link href="/learn">
           <p className="p-2">Learn</p>
         </Link> */}
