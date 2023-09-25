@@ -13,15 +13,16 @@ function Header() {
   const [textSizePrimary, setTextSizePrimary] = useRecoilState(textSizePrimaryState);
 
   return (
-    <div className="relative">
-      <header className="absolute inset-x-0 top-0">
+    <>
+      <header className="grid grid-rows-3 items-center justify-center">
         {/* <SelectList /> */}
-        <h1 className="text-blue-900 font-bold p-4 ml-2.5">Accessible Learning AI</h1>
+        <p className="row-start-2 text-3xl font-bold text-center">Accessible Learning</p>
+        <p className="row-start-3 text-3xl font-bold text-center bg-gradient-to-r from-yellow-200 via-amber-400 to-orange-500 text-transparent bg-clip-text">using AI</p>
         {/* <Link href="/learn">
           <p className="p-2">Learn</p>
         </Link> */}
       </header>
-    </div>
+    </>
   );
 }
 
