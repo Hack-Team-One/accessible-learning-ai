@@ -1,21 +1,43 @@
 # accessible-learning-ai
 Accessibility Enhanced Learning with AI
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Setup
 
-## Getting Started
+1. If you don’t have Node.js installed, [install it from here](https://nodejs.org/en/) (Node.js version >= 14.6.0 required)
 
-First, run the development server:
+2. Clone this repository
 
-```bash
-npm run dev
-```
+3. Navigate into the project directory
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```bash
+   $ cd accessible-learning-ai
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4. Install the requirements
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```bash
+   $ npm install
+   ```
+
+5. Make a copy of the example environment variables file
+
+   On Linux systems: 
+   ```bash
+   $ cp .env.example .env.local
+   ```
+   On Windows:
+   ```powershell
+   $ copy .env.example .env.local
+   ```
+6. Add your [API key](https://platform.openai.com/account/api-keys) to the newly created `.env` file
+
+7. Run the app
+
+   ```bash
+   $ npm run dev
+   ```
+
+You should now be able to access the app at [http://localhost:3000](http://localhost:3000)! For the full context behind this example app, check out the [tutorial](https://platform.openai.com/docs/quickstart).
 
 ## Learn More
 

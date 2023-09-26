@@ -1,21 +1,14 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import {
-  textColorPrimaryState,
-  textFontPrimaryState,
-  textSizePrimaryState,
-} from '../states/textState';
-import Header from '../components/Header';
+import AccessibleChat from '@/components/AccessibleChat';
 
 const Home: React.FC = () => {
-  const [textColorPrimary, setTextColorPrimary] = useRecoilState(textColorPrimaryState);
-  const [textFontPrimary, setTextFontPrimary] = useRecoilState(textFontPrimaryState);
-  const [textSizePrimary, setTextSizePrimary] = useRecoilState(textSizePrimaryState);
 
   return (
-    <div>
-      <Header />
-    </div>
+    <main className="flex min-h-screen flex-col items-center justify-between p-2">
+      <div>
+        <AccessibleChat/>
+      </div>
+    </main>
   );
 };
 

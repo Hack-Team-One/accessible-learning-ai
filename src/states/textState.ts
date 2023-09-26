@@ -1,18 +1,25 @@
 import { atom } from 'recoil';
 
-export const textColorPrimaryState = atom({
-  key: 'textColorPrimaryState',
-  default: 'black',
+export const textColorState = atom({
+  key: 'textColorState',
+  default: {
+    primary: 'black',
+    secondary: 'blue',
+  }
 });
 
-export const textFontPrimaryState = atom({
-  key: 'textFontPrimaryState',
-  default: 'Arial',
+export const textFontState = atom({
+  key: 'textFontState',
+  default: { 
+    primary: 'Arial',
+  }
 });
 
-export const textSizePrimaryState = atom({
-  key: 'textSizePrimaryState',
-  default: '12px',
+export const textSizeState = atom({
+  key: 'textSizeState',
+  default: {
+    primary: '12px',
+  }
 });
 
 
