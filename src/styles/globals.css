@@ -29,10 +29,7 @@ body {
   h1 {
     @apply flex justify-center text-5xl font-semibold;
   }
-  button-send {
-    @apply whitespace-nowrap min-w-120 flex justify-center items-center;
-  }
-  button-regenerate {
+  button-centered {
     @apply whitespace-nowrap flex justify-center items-center;
   }
 }

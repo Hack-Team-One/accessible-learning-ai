@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { Button, TextareaAutosize } from '@mui/base';
-import TextInput from '../components/TextInput';
+import TextInput from './TextInput';
 import {
   textColorState,
   textFontState,
@@ -12,9 +12,7 @@ import { sendMessageToChatGPT } from '../api/chatGPT';
 import SendIcon from '@mui/icons-material/Send';
 import LoopIcon from '@mui/icons-material/Loop';
 
-const CHATGPT_MODEL = process.env.NEXT_PUBLIC_CHATGPT_MODEL || 'gpt-3.5-turbo';
-
-const AccessibleChat: React.FC = () => {
+const OnboardingModal: React.FC = () => {
   const [bgColor, setBgColor] = useRecoilState(bgColorState);
   const [borderColor, setBorderColor] = useRecoilState(borderColorState);
   const [textColor, setTextColor] = useRecoilState(textColorState);
@@ -84,4 +82,4 @@ const AccessibleChat: React.FC = () => {
   );
 };
 
-export default AccessibleChat;
+export default OnboardingModal;
