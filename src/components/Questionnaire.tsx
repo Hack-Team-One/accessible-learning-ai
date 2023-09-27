@@ -11,7 +11,6 @@ import { bgColorState, borderColorState } from '../states/colorState';
 import { sendMessageToChatGPT } from '../api/chatGPT';
 import SendIcon from '@mui/icons-material/Send';
 import LoopIcon from '@mui/icons-material/Loop';
-import { Message } from '../utils/types';
 
 const CHATGPT_MODEL = process.env.NEXT_PUBLIC_CHATGPT_MODEL || 'gpt-3.5-turbo';
 
@@ -23,50 +22,35 @@ const AccessibleChat: React.FC = () => {
   const [textSize, setTextSize] = useRecoilState(textSizeState);
 
   const [userInput, setUserInput] = useState('');
-  const [messages, setMessages] = useState<Message[]>([]); // Maintains conversation history
+  const [chatGPTResponse, setChatGPTResponse] = useState('');
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, includeUserInput: boolean = true) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    let newMessages = [...messages];
-    if (includeUserInput) {
-      newMessages.push({ role: 'user', content: userInput });
-    }
-  
     try {
-      const response = await sendMessageToChatGPT(newMessages);
-      if (response) {
-        setMessages([...newMessages, { role: 'system', content: response }]);
-        setUserInput('');
-      } else {
-        setMessages([...newMessages, { role: 'system', content: 'Something went wrong. Please try again.' }]);
-      }
+      const response = await sendMessageToChatGPT(userInput);
+      if (response) setChatGPTResponse(response);
+      else setChatGPTResponse('Something went wrong. Please try again.');
     } catch (error) {
       console.error('Error:', error);
     }
-  };  
+  };
 
-  const handleRegenerate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-
-    const updatedMessages: Message[] = messages.slice(0, -2); // Remove last response
-    setMessages(updatedMessages);
-
-    handleSubmit(e as any, false);
+  const handleRegenerate = async (e) => {
+    handleSubmit(e);
   };
   
 
   return (
     <form className="h-screen w-full justify-center items-center mx-2 flex flex-col gap-3 md:mx-4 lg:mx-auto lg:max-w-2xl xl:max-w-3xl" onSubmit={handleSubmit}>
       <div id="responseDiv" className="flex-1 w-full overflow-auto p-4">
-        {messages.map((message, index) => (
-          <div key={index} className={`text-${textColor.primary} ${message.role === 'user' ? 'text-right' : 'text-left'}`}>
-            {message.content}
-          </div>
-        ))}
-        {messages.length > 0 && <Button
+        <TextareaAutosize 
+          value={chatGPTResponse}
+          onChange={(e) => setChatGPTResponse(e.target.value)}
+          className={`text-${textColor.primary} w-full`}
+        />
+        {chatGPTResponse.length > 0 && <Button
           className={`text-${textColor.primary} bg-${bgColor.primary} border border-${borderColor.primary} float-right button-regenerate rounded-md p-1 `}
-          disabled={messages.length < 1}
+          disabled={userInput.trim().length < 3}
           onClick={handleRegenerate}
           style={{ zIndex: 1 }}
         >
@@ -85,7 +69,7 @@ const AccessibleChat: React.FC = () => {
           />
           <Button
             className={`text-${textColor.primary} bg-${bgColor.secondary} button-send absolute p-1 rounded-md md:bottom-3 md:p-2 md:right-3 dark:hover:bg-gray-900 dark:disabled:hover:bg-transparent right-2 transition-colors disabled:opacity-40`}
-            disabled={userInput.trim().length < 2}
+            disabled={userInput.trim().length < 3}
             type="submit"
             style={{ zIndex: 1 }}
           >
