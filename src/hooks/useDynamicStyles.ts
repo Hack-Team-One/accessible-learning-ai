@@ -9,24 +9,30 @@ import {
   fontSizeState,
   lineHeightState, 
  } from "@/states/textState";
+ import { FontNames } from "@/utils/enums";
 
 export default function useDynamicStyles() {
-  const textColor = useRecoilValue(textColorState);
-  const bgColor = useRecoilValue(bgColorState);
-  const borderColor = useRecoilValue(borderColorState);
-  const fontSize = useRecoilValue(fontSizeState);
-  const lineHeight = useRecoilValue(lineHeightState);
+  const textFont: Record<string, FontNames> = useRecoilValue(textFontState);
+  const fontSize: Record<string, number> = useRecoilValue(fontSizeState);
+  const lineHeight: Record<string, number> = useRecoilValue(lineHeightState);
 
-    // Generate textSize styles for each key
-    const textSizeKeys = Object.keys(fontSize).filter(key => key.startsWith('text_'));
-    const textSizeStyles = {};
-    textSizeKeys.forEach(key => {
-      textSizeStyles[key] = `text-[${fontSize[key]}px]/[${lineHeight[key]}px]`;
-    });
+  const textColor: Record<string, string> = useRecoilValue(textColorState);
 
+  const bgColor: Record<string, string> = useRecoilValue(bgColorState);
+  const borderColor: Record<string, string> = useRecoilValue(borderColorState);
+
+
+  // Generate a textSize for each key that include dynamic states: font size, line height
+  const textSizeKeys: string[] = Object.keys(fontSize).filter(key => key.startsWith('text_'));
+  const textSize: Record<string, string> = {};
+  textSizeKeys.forEach((key: string) => {
+    textSize[key] = `text-[${fontSize[key]}px]/[${lineHeight[key]}px]`;
+  });
+
+  // Group the text color, size, and font into a single class
   const textStyles = {
-    'primary': `text-${textColor.primary}`,
-    'secondary': `text-${textColor.secondary}`,
+    'primary': `text-${textColor.primary} ${textSize.text_base} font-${textFont.primary}}`,
+    'secondary': `text-${textColor.secondary} ${textSize.text_base} font-${textFont.primary}}`,
   };
   const bgStyles = {
     'primary': `bg-${bgColor.primary}`,
@@ -40,6 +46,8 @@ export default function useDynamicStyles() {
   };
 
   return {
+    textFont,
+    textSize,
     textColor,
     bgColor,
     borderColor,
