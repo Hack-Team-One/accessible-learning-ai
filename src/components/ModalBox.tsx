@@ -10,10 +10,10 @@ function ModalBox() {
       <Box sx={style}>
           <h2 id="unstyled-modal-title" className="text-center col-span-2">Accessibility Adjustments</h2>
           {/* <ResetAdjustBtn /> */}
-          <AccessSizeControl title="Content Scaling"/>
-          <AccessSizeControl title="Adjust Font Sizing"/>
-          <AccessSizeControl title="Adjust Line Height"/>
-          <AccessSizeControl title="Adjust Letter"/>
+          <AccessSizeControl title="Content Scaling" text="Default" />
+          <AccessSizeControl title="Adjust Font Sizing" text="Default" />
+          <AccessSizeControl title="Adjust Line Height" text="Default" />
+          <AccessSizeControl title="Adjust Letter" text="Default" />
           {/* <div className="">
             <SeizureSafeProf />
           </div> */}

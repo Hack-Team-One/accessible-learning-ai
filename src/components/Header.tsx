@@ -1,8 +1,8 @@
 import { useRecoilState } from 'recoil';
 import {
-  textColorPrimaryState,
-  textFontPrimaryState,
-  textSizePrimaryState,
+  // textColorPrimaryState,
+  // textFontPrimaryState,
+  // textSizePrimaryState,
 } from '../states/textState';
 import Link from 'next/link';
 import SelectList from './SelectList';
