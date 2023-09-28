@@ -5,6 +5,8 @@ import { Button } from '@mui/base/Button';
 import { Box, styled, Theme } from '@mui/system';
 import access_img from '../images/accessibility-symbol-2.png'
 import Image from 'next/image';
+import ResetAdjustBtn from './ResetAdjustBtn';
+import SeizureSafeProf from './SeizureSafeProf';
 
 const ModalAccess: React.FC = () => {
   const [open, setOpen] = React.useState(false);
@@ -22,13 +24,13 @@ const ModalAccess: React.FC = () => {
       <Button 
         type="button" 
         onClick={handleOpen} 
-        className="modal-button"
+        className="absolute bottom-3 right-3 hover:shadow-xl rounded-full"
       >
         <Image src={access_img} alt="Accessbility Icon" className="h-9 w-9 rounded-full"/>
         {/* Open modal */}
       </Button>
       <StyledModal
-        className="absolute bottom-3 right-3"
+        className="absolute bottom-3 right-3 grid grid-row-2 grid-cols-2"
         aria-labelledby="unstyled-modal-title"
         aria-describedby="unstyled-modal-description"
         open={open}
@@ -36,8 +38,11 @@ const ModalAccess: React.FC = () => {
         slots={{ backdrop: StyledBackdrop }}
       >
         <Box sx={style}>
-          <h2 id="unstyled-modal-title" className="">Text in a modal</h2>
-          <p id="unstyled-modal-description">Aliquid amet deserunt earum!</p>
+          <h2 id="unstyled-modal-title" className="text-center col-span-2">Accessibility Adjustments</h2>
+          <ResetAdjustBtn />
+          <div className="">
+            <SeizureSafeProf />
+          </div>
         </Box>
       </StyledModal>
     </div>
