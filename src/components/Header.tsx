@@ -8,9 +8,9 @@ import Link from 'next/link';
 import SelectList from './SelectList';
 
 function Header() {
-  const [textColorPrimary, setTextColorPrimary] = useRecoilState(textColorPrimaryState);
-  const [textFontPrimary, setTextFontPrimary] = useRecoilState(textFontPrimaryState);
-  const [textSizePrimary, setTextSizePrimary] = useRecoilState(textSizePrimaryState);
+  // const [textColorPrimary, setTextColorPrimary] = useRecoilState(textColorPrimaryState);
+  // const [textFontPrimary, setTextFontPrimary] = useRecoilState(textFontPrimaryState);
+  // const [textSizePrimary, setTextSizePrimary] = useRecoilState(textSizePrimaryState);
 
   return (
     <>
