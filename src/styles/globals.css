@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  
-}
-
 /* const TriggerButton = styled('button')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
@@ -32,9 +28,7 @@
   `,
 ); */
 
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* 
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -58,3 +52,12 @@ body {
       rgb(var(--background-end-rgb)) 100%
     );
 } */
+
+@layer base {
+  h1 {
+    @apply flex justify-center text-5xl font-semibold;
+  }
+  button-centered {
+    @apply whitespace-nowrap flex justify-center items-center;
+  }
+}

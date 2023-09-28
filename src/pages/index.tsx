@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Header from '../components/Header';
 import ModalAccess from '../components/ModalAccess';
+import AccessibleChat from '@/components/AccessibleChat';
 
 const Home: React.FC = () => {
 
@@ -12,6 +13,7 @@ const Home: React.FC = () => {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <Header />
+      <AccessibleChat/>
       <ModalAccess />
     </div>
   );

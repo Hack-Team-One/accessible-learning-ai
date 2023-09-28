@@ -34,6 +34,10 @@ const config: Config = {
           // Add other default styles for input
         },
       },
+      minWidth: {
+        '100': '100px',
+        '120': '120px',
+      },
     },
   },
   variants: {},
