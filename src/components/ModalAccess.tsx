@@ -7,6 +7,7 @@ import access_img from '../images/accessibility-symbol-2.png'
 import Image from 'next/image';
 import ResetAdjustBtn from './ResetAdjustBtn';
 import SeizureSafeProf from './SeizureSafeProf';
+import ModalBox from './ModalBox';
 
 const ModalAccess: React.FC = () => {
   const [open, setOpen] = React.useState(false);
@@ -37,13 +38,7 @@ const ModalAccess: React.FC = () => {
         onClose={handleClose}
         slots={{ backdrop: StyledBackdrop }}
       >
-        <Box sx={style}>
-          <h2 id="unstyled-modal-title" className="text-center col-span-2">Accessibility Adjustments</h2>
-          <ResetAdjustBtn />
-          <div className="">
-            <SeizureSafeProf />
-          </div>
-        </Box>
+        <ModalBox />
       </StyledModal>
     </div>
   )
