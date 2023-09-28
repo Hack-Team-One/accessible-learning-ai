@@ -3,8 +3,11 @@ import { atom } from 'recoil';
 export const bgColorState = atom({
   key: 'bgColorPrimaryState',
   default: {
-    primary: 'blue-900',
-    secondary: 'purple',
+    primary: 'white',
+    secondary: 'blue-900',
+    tertiary: 'gray-100',
+    buttonPrimary: 'blue-500',
+    buttonSecondary: 'purple',
   },
 });
 
@@ -13,5 +16,6 @@ export const borderColorState = atom({
   default: {
     primary: 'black',
     secondary: 'blue',
+    tertiary: 'gray',
   },
 });

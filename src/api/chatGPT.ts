@@ -1,23 +1,22 @@
 import OpenAI from 'openai';
 import { toast } from 'react-toastify';
+import { Message } from '../types';
 
+export const CHATGPT_MODEL: string = process.env.NEXT_PUBLIC_CHATGPT_MODEL || 'gpt-3.5-turbo';
+export const MAX_TOKEN_LIMIT: number = parseInt(process.env.NEXT_PUBLIC_CHATGPT_MAX_TOKEN_LIMIT || '150');
 const API_KEY: string | undefined = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
-const CHATGPT_MODEL: string = process.env.NEXT_PUBLIC_CHATGPT_MODEL || 'gpt-3.5-turbo';
-const MAX_TOKEN_LIMIT: number = parseInt(process.env.NEXT_PUBLIC_CHATGPT_MAX_TOKEN_LIMIT || '150');
 
 const openai = new OpenAI({
   apiKey: API_KEY,
   dangerouslyAllowBrowser: true,
 });
 
-export const sendMessageToChatGPT = async (message: string) => {
-  if (message.trim().length < 3) return;
-
+export const sendMessageToChatGPT = async (messages: Message[]) => {
   // VALIDATE THE TOKEN COUNT BEFORE SENDING THE MESSAGE
 
   try {
     const params: OpenAI.Chat.ChatCompletionCreateParams = {
-      messages: [{ role: 'user', content: message }],
+      messages: messages, // Send the entire conversation history
       model: CHATGPT_MODEL,
       max_tokens: MAX_TOKEN_LIMIT,
       temperature: 0.6,
