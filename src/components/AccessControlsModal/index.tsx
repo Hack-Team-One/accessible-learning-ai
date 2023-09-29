@@ -40,7 +40,7 @@ export default function AccessControlsModal({ open, onClose, slots}: ModalProps)
   );
 }
 
-const Backdrop = React.forwardRef<
+export const Backdrop = React.forwardRef<
   HTMLDivElement,
   { open?: boolean; className: string }
 >((props, ref) => {

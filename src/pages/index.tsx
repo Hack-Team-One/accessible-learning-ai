@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Header from '../components/Header';
-import AccessControlsModal from '../components/AccessControlsModal';
+import AccessControlsModal, { Backdrop } from '../components/AccessControlsModal';
 import AccessibleChat from '../components/AccessibleChat';
 import { Button } from '@mui/base';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
@@ -25,7 +25,7 @@ const Home: React.FC = () => {
       <AccessControlsModal
         open={openModal}
         onClose={() => setOpenModal(false)}
-        slots={{ backdrop: StyledBackdrop }}
+        slots={{ backdrop: Backdrop }}
       />
       <Button 
         type="button" 
