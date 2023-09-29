@@ -8,26 +8,30 @@ interface AccessSizeControlProps {
   title: string;
   text: string;
   icon: React.ReactNode;
-  multiplierValue: number
-  setMultiplierValue: number;
+  stateKey: string;
+  value: number
+  handleUpdateValue: (stateKey: string, newValue: number) => void;
 } 
 
 function AccessSizeControl({
   title,
   text,
   icon,
-  multiplierValue,
-  setMultiplierValue,
+  stateKey,
+  value,
+  handleUpdateValue,
 }: AccessSizeControlProps) {
 
-  return(
-    <div>
-      <div className="bg-slate-100 grid grid-cols-3 mt-5 rounded-md">
-        <h3 className="col-span-3 text-center mt-5 mb-5"><>{icon}</> <>{title}</></h3>
+  return (
+    <div className="bg-slate-100 grid grid-cols-3 mt-5 rounded-md">
+      <h3 className="col-span-3 text-center mt-5 mb-5">
+        <>{icon}</>
+        <>{title}</>
+      </h3>
       <div>
         <Button
           className="bg-blue-500 rounded-full ml-10 mb-5 hover:scale-110"
-          onClick={setMultiplierValue(multiplierValue - .1)}
+          onClick={() => handleUpdateValue(stateKey, value - .1)}
         >
           <KeyboardArrowDownIcon className='text-white' />
         </Button>
@@ -38,7 +42,7 @@ function AccessSizeControl({
       <div className="relative">
         <Button
           className="bg-blue-500 rounded-full absolute right-10 mb-5 hover:scale-110"
-          onClick={setMultiplierValue(multiplierValue + .1)}
+          onClick={() => handleUpdateValue(stateKey, value + .1)}
         >
           <KeyboardArrowUpIcon className="text-white"/>
         </Button>

@@ -44,16 +44,12 @@ export default function AccessControlsModal({ open, onClose, slots}: ModalProps)
   const [lineHeight, setLineHeight] = useRecoilState(lineHeightState);
   // const [letterSpacing, setLetterSpacing] = useRecoilState(letterSpacingState);
 
-  // const handleUpdateSizeMultiplier = (action: string) => () => {
-  //   const currentState = {...state};
-  //   if (action === 'plus') {
-  //     const updatedStateMultiplier = Object.assign(currentState, { multiplier: currentState.multiplier + .1 });
-  //     setState(updatedStateMultiplier);
-  //   } else if (action === 'minus') {
-  //     const updatedStateMultiplier = Object.assign(currentState, { multiplier: currentState.multiplier - .1 });
-  //     setState(updatedStateMultiplier);
-  //   }
-  // };
+  const handleUpdateValue = (stateKey: string, newValue: number) => {
+    // if (stateKey === contentScalingState.key) setContentScaling(Object.assign(contentScaling, { multiplier: newValue }));
+    if (stateKey === fontSizeState.key) setFontSize(Object.assign(fontSize, { multiplier: newValue }));
+    else if (stateKey === lineHeightState.key) setLineHeight(Object.assign(lineHeight, { multiplier: newValue }));
+    // else if (stateKey === letterSpacingState.key) setLetterSpacing(Object.assign(letterSpacing, { multiplier: newValue }));
+  };
 
   return (
     <div>
@@ -66,7 +62,7 @@ export default function AccessControlsModal({ open, onClose, slots}: ModalProps)
       >
         <Box sx={style}>
           <h2 id="accessibility-controls-modal" className={`${textSize.text_lg} text-center col-span-2`}>Accessibility Adjustments</h2>
-          <span id="transition-modal-description" style={{ marginTop: 16 }}>
+          <span id="transition-modal-description" style={{ marginTop: 16 }} className={`${textSize.text_base}`} >
             Adjust the following settings to make the website more accessible.
           </span>
           <AccessProfiles />
@@ -82,16 +78,18 @@ export default function AccessControlsModal({ open, onClose, slots}: ModalProps)
             title="Adjust Font Sizing"
             text="Default"
             icon={<HeightIcon />}
-            multiplierValue={fontSize.multiplier}
-            setMultiplierValue={setMultiplierValue}
+            stateKey={fontSizeState.key}
+            value={fontSize.multiplier}
+            handleUpdateValue={handleUpdateValue}
           />
-          {/* <AccessSizeControl
+          <AccessSizeControl
             title="Adjust Line Height"
             text="Default"
             icon={<FormatLineSpacingIcon />}
-            state={lineHeight}
-            setState={setLineHeight}
-          /> */}
+            stateKey={lineHeightState.key}
+            value={lineHeight.multiplier}
+            handleUpdateValue={handleUpdateValue}
+          />
           {/* <AccessSizeControl 
             title="Adjust Letter Spacing"
             icon={<SyncAltIcon />}
