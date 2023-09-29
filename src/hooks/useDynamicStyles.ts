@@ -26,7 +26,7 @@ export default function useDynamicStyles() {
   const textSizeKeys: string[] = Object.keys(fontSize).filter(key => key.startsWith('text_'));
   const textSize: Record<string, string> = {};
   textSizeKeys.forEach((key: string) => {
-    textSize[key] = `text-[${fontSize[key]}px]/[${lineHeight[key]}px]`;
+    textSize[key] = `text-[${fontSize[key] * fontSize.multiplier}px]/[${lineHeight[key] * lineHeight.multiplier }px]`;
   });
 
   // Group the text color, size, and font into a single class

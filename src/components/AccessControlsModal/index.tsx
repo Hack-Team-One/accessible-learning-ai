@@ -4,12 +4,22 @@ import { styled, Box, Theme } from '@mui/system';
 import { Modal } from '@mui/base/Modal';
 import AccessProfiles from '../AccessProfiles';
 import { useRecoilState } from 'recoil';
-import { fontSizeState } from '../../states/textState';
+import {
+  fontSizeState,
+  lineHeightState,
+  // letterSpacingState,
+  // contentScalingState,
+  // contentScalingStateType,
+  fontSizeStateType,
+  // lineHeightStateType,
+  // letterSpacingStateType,
+} from '../../states/textState';
 import AccessSizeControl from '../AccessSizeControl';
 import ZoomOutMapIcon from '@mui/icons-material/ZoomOutMap';
 import FormatLineSpacingIcon from '@mui/icons-material/FormatLineSpacing';
 import HeightIcon from '@mui/icons-material/Height';
 import SyncAltIcon from '@mui/icons-material/SyncAlt';
+import useDynamicStyles from '../../hooks/useDynamicStyles';
 
 interface ModalProps {
   open: boolean;
@@ -20,11 +30,29 @@ interface ModalProps {
 }
 
 export default function AccessControlsModal({ open, onClose, slots}: ModalProps) {
+  const {
+    textColor,
+    textFont,
+    textSize,
+    textStyles,
+    bgStyles,
+    borderStyles,
+  } = useDynamicStyles();
+  
+  // const [contentScaling, setContentScaling] = useRecoilState(contentScalingState);
   const [fontSize, setFontSize] = useRecoilState(fontSizeState);
+  const [lineHeight, setLineHeight] = useRecoilState(lineHeightState);
+  // const [letterSpacing, setLetterSpacing] = useRecoilState(letterSpacingState);
 
-  // const handleSwitchChange = (accessProfileKey: keyof typeof accessProfiles) => {
-  //   const updatedAccessProfile: Partial<AccessProfilesType> = { [accessProfileKey]: !accessProfiles[accessProfileKey] };
-  //   setAccessProfiles(prev => ({ ...prev, ...updatedAccessProfile }));
+  // const handleUpdateSizeMultiplier = (action: string) => () => {
+  //   const currentState = {...state};
+  //   if (action === 'plus') {
+  //     const updatedStateMultiplier = Object.assign(currentState, { multiplier: currentState.multiplier + .1 });
+  //     setState(updatedStateMultiplier);
+  //   } else if (action === 'minus') {
+  //     const updatedStateMultiplier = Object.assign(currentState, { multiplier: currentState.multiplier - .1 });
+  //     setState(updatedStateMultiplier);
+  //   }
   // };
 
   return (
@@ -37,16 +65,40 @@ export default function AccessControlsModal({ open, onClose, slots}: ModalProps)
         slots={{ backdrop: StyledBackdrop }}
       >
         <Box sx={style}>
-          <h2 id="accessibility-controls-modal" className="text-center col-span-2">Accessibility Adjustments</h2>
+          <h2 id="accessibility-controls-modal" className={`${textSize.text_lg} text-center col-span-2`}>Accessibility Adjustments</h2>
           <span id="transition-modal-description" style={{ marginTop: 16 }}>
             Adjust the following settings to make the website more accessible.
           </span>
           <AccessProfiles />
           <div className="flex flex-col">
-          <AccessSizeControl title="Content Scaling" text="Default" icon={<ZoomOutMapIcon />}/>
-          <AccessSizeControl title="Adjust Font Sizing" text="Default" icon={<HeightIcon />} />
-          <AccessSizeControl title="Adjust Line Height" text="Default" icon={<FormatLineSpacingIcon />} />
-          <AccessSizeControl title="Adjust Letter Spacing" icon={<SyncAltIcon />} text="Default" />
+          {/* <AccessSizeControl
+            title="Content Scaling"
+            text="Default"
+            icon={<ZoomOutMapIcon />}
+            state={contentScaling}
+            setState={setContentScaling}
+          /> */}
+          <AccessSizeControl
+            title="Adjust Font Sizing"
+            text="Default"
+            icon={<HeightIcon />}
+            multiplierValue={fontSize.multiplier}
+            setMultiplierValue={setMultiplierValue}
+          />
+          {/* <AccessSizeControl
+            title="Adjust Line Height"
+            text="Default"
+            icon={<FormatLineSpacingIcon />}
+            state={lineHeight}
+            setState={setLineHeight}
+          /> */}
+          {/* <AccessSizeControl 
+            title="Adjust Letter Spacing"
+            icon={<SyncAltIcon />}
+            text="Default"
+            state={letterSpacing}
+            setState={setLetterSpacing}
+          /> */}
           </div>
         </Box>
       </StyledModal>

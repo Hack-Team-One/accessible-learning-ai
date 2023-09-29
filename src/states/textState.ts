@@ -12,6 +12,8 @@ export const textColorState = atom({
   }
 });
 
+
+
 export const textFontState = atom({
   key: 'textFontState',
   default: { 
@@ -23,9 +25,29 @@ export const textFontState = atom({
   }
 });
 
-export const fontSizeState = atom({
+export type fontSizeStateType = {
+  multiplier: number;
+  text_xs: number;
+  text_sm: number;
+  text_base: number;
+  text_lg: number;
+  text_xl: number;
+  text_2xl: number;
+  text_3xl: number;
+  text_4xl: number;
+  text_5xl: number;
+  text_6xl: number;
+  text_7xl: number;
+  text_8xl: number;
+  text_9xl: number;
+  titlePrimary: number;
+  titleSecondary: number;
+};
+
+export const fontSizeState = atom<fontSizeStateType>({
   key: 'fontSizeState',
   default: {
+    multiplier: 1,
     text_xs: 12,
     text_sm: 14,
     text_base: 16, // WCAG 2.1 recommended font size for body text
@@ -47,6 +69,7 @@ export const fontSizeState = atom({
 export const lineHeightState = atom({
   key: 'lineHeightState',
   default: {
+    multiplier: 1,
     text_xs: 16,
     text_sm: 20,
     text_base: 24,
