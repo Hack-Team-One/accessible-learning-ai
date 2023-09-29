@@ -2,14 +2,14 @@ import { useRecoilValue } from "recoil";
 import {
   bgColorState,
   borderColorState,
- } from "@/states/colorState";
+ } from "../states/colorState";
 import {
   textColorState,
   textFontState,
   fontSizeState,
   lineHeightState, 
- } from "@/states/textState";
- import { FontNames } from "@/utils/enums";
+ } from "../states/textState";
+ import { FontNames } from "../utils/enums";
 
 export default function useDynamicStyles() {
   const textFont: Record<string, FontNames> = useRecoilValue(textFontState);

@@ -12,3 +12,12 @@ export enum FontNames {
     Dyslexie = 'Dyslexie',
     ComicSans = 'ComicSans',
 }
+
+export const enum AccessProfileNames {
+    SeizureSafeProfile = 'seizureSafeProfile',
+    VisionImpairedProfile = 'visionImpairedProfile',
+    AdhdFriendlyProfile = 'adhdFriendlyProfile',
+    CognitiveDisabilityProfile = 'cognitiveDisabilityProfile',
+    KeyboardNavigationProfile = 'keyboardNavigationProfile',
+    BlindUsersProfile = 'blindUsersProfile',
+  }

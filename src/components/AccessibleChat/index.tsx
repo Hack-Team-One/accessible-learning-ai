@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { Button, TextareaAutosize } from '@mui/base';
-import { sendMessageToChatGPT, CHATGPT_MODEL } from '../api/chatGPT';
+import { sendMessageToChatGPT, CHATGPT_MODEL } from '../../utils';
 import SendIcon from '@mui/icons-material/Send';
 import LoopIcon from '@mui/icons-material/Loop';
-import { Message } from '../types';
-import useDynamicStyles from '../hooks/useDynamicStyles';
+import { Message } from '../../types';
+import useDynamicStyles from '../../hooks/useDynamicStyles';
+import { validateMessages } from '../../utils/validation';
 
 const AccessibleChat: React.FC = () => {
   const {
@@ -28,6 +29,8 @@ const AccessibleChat: React.FC = () => {
     if (includeUserInput) {
       newMessages.push({ role: 'user', content: userInput });
     }
+
+    validateMessages(newMessages);
   
     try {
       const response = await sendMessageToChatGPT(newMessages);
