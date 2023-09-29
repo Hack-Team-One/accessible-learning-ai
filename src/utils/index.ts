@@ -1,14 +1,22 @@
 import { toast } from 'react-toastify';
 import { Message } from '../types';
 import OpenAI from 'openai';
-import { encode } from 'gpt-3-encoder';
 
 export { CHATGPT_MODEL, MAX_TOKEN_LIMIT } from '../pages/api/chatGPT';
 
-export const countTokens = (text: string): number => {
-  const encoded = encode(text);
-  return encoded.length;
-};
+export const countTokens = async (messages: Message[]) => {
+  const response = await fetch('/api/countTokens', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ messages }),
+  });
+  
+  const data = await response.json();
+  const totalTokens = data.totalTokens;
+  return totalTokens;
+}  
 
 export const sendMessageToChatGPT = async (messages: Message[]) => {
   try {

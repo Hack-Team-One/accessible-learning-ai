@@ -3,6 +3,8 @@ import clsx from 'clsx';
 import { styled, Box, Theme } from '@mui/system';
 import { Modal } from '@mui/base/Modal';
 import AccessProfiles from '../AccessProfiles';
+import { useRecoilState } from 'recoil';
+import { fontSizeState } from '../../states/textState';
 
 interface ModalProps {
   open: boolean;
@@ -13,6 +15,12 @@ interface ModalProps {
 }
 
 export default function AccessControlsModal({ open, onClose, slots}: ModalProps) {
+  const [fontSize, setFontSize] = useRecoilState(fontSizeState);
+
+  // const handleSwitchChange = (accessProfileKey: keyof typeof accessProfiles) => {
+  //   const updatedAccessProfile: Partial<AccessProfilesType> = { [accessProfileKey]: !accessProfiles[accessProfileKey] };
+  //   setAccessProfiles(prev => ({ ...prev, ...updatedAccessProfile }));
+  // };
 
   return (
     <div>
