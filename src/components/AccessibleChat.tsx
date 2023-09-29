@@ -5,7 +5,7 @@ import { sendMessageToChatGPT, CHATGPT_MODEL } from '../api/chatGPT';
 import SendIcon from '@mui/icons-material/Send';
 import LoopIcon from '@mui/icons-material/Loop';
 import { Message } from '../types';
-import useDynamicStyles from '@/hooks/useDynamicStyles';
+import useDynamicStyles from '../hooks/useDynamicStyles';
 
 const AccessibleChat: React.FC = () => {
   const {

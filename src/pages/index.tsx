@@ -1,10 +1,18 @@
 import React from 'react';
 import Head from 'next/head';
 import Header from '../components/Header';
-import ModalAccess from '../components/ModalAccess';
-import AccessibleChat from '@/components/AccessibleChat';
+import AccessControlsModal from '../components/AccessControlsModal';
+import AccessibleChat from '../components/AccessibleChat';
+import { Button } from '@mui/base';
+import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
+import SendIcon from '@mui/icons-material/Send';
+
+import clsx from 'clsx';
+import { Modal } from '@mui/base/Modal';
+import { Box, styled, Theme } from '@mui/system';
 
 const Home: React.FC = () => {
+  const [openModal, setOpenModal] = React.useState<boolean>(false);
 
   return (
     <div>
@@ -14,7 +22,18 @@ const Home: React.FC = () => {
       </Head>
       <Header />
       <AccessibleChat/>
-      <ModalAccess />
+      <AccessControlsModal
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+        slots={{ backdrop: StyledBackdrop }}
+      />
+      <Button 
+        type="button" 
+        onClick={() => setOpenModal(true)} 
+        className="absolute bottom-3 right-3 hover:shadow-xl rounded-full"
+      >
+        <AccessibilityNewIcon />
+      </Button>
     </div>
   );
 };
