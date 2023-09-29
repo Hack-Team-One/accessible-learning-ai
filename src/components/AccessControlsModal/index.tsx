@@ -5,6 +5,11 @@ import { Modal } from '@mui/base/Modal';
 import AccessProfiles from '../AccessProfiles';
 import { useRecoilState } from 'recoil';
 import { fontSizeState } from '../../states/textState';
+import AccessSizeControl from '../AccessSizeControl';
+import ZoomOutMapIcon from '@mui/icons-material/ZoomOutMap';
+import FormatLineSpacingIcon from '@mui/icons-material/FormatLineSpacing';
+import HeightIcon from '@mui/icons-material/Height';
+import SyncAltIcon from '@mui/icons-material/SyncAlt';
 
 interface ModalProps {
   open: boolean;
@@ -36,11 +41,12 @@ export default function AccessControlsModal({ open, onClose, slots}: ModalProps)
           <span id="transition-modal-description" style={{ marginTop: 16 }}>
             Adjust the following settings to make the website more accessible.
           </span>
+          <AccessProfiles />
           <div className="flex flex-col">
-            <AccessProfiles />
-          </div>
-          <div className="flex flex-col">
-            {/* other controls go here */}
+          <AccessSizeControl title="Content Scaling" text="Default" icon={<ZoomOutMapIcon />}/>
+          <AccessSizeControl title="Adjust Font Sizing" text="Default" icon={<HeightIcon />} />
+          <AccessSizeControl title="Adjust Line Height" text="Default" icon={<FormatLineSpacingIcon />} />
+          <AccessSizeControl title="Adjust Letter Spacing" icon={<SyncAltIcon />} text="Default" />
           </div>
         </Box>
       </StyledModal>
