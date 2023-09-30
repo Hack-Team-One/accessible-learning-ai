@@ -1,15 +1,15 @@
 import React from 'react';
-import { accessProfilesState, AccessProfilesType } from '../../states/accessProfilesState';
+import { accessProfilesState, AccessProfilesStateType } from '../../states/accessProfilesState';
 import { useRecoilState } from 'recoil';
 import CustomSwitch from '../CustomSwitch';
 import { camelCaseToUpperCaseSpaces } from '../../utils/helpers/text-helpers';
 import { AccessProfileNames } from '../../utils/enums';
 
 const AccessProfiles: React.FC = () => {
-  const [accessProfiles, setAccessProfiles] = useRecoilState<AccessProfilesType>(accessProfilesState);
+  const [accessProfiles, setAccessProfiles] = useRecoilState<AccessProfilesStateType>(accessProfilesState);
 
   const handleSwitchChange = (accessProfileKey: keyof typeof accessProfiles) => {
-    const updatedAccessProfile: Partial<AccessProfilesType> = { [accessProfileKey]: !accessProfiles[accessProfileKey] };
+    const updatedAccessProfile: Partial<AccessProfilesStateType> = { [accessProfileKey]: !accessProfiles[accessProfileKey] };
     setAccessProfiles(prev => ({ ...prev, ...updatedAccessProfile }));
   };
 

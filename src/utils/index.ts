@@ -3,7 +3,6 @@ import { Message } from '../types';
 import OpenAI from 'openai';
 
 export { CHATGPT_MODEL, MAX_TOKEN_LIMIT } from '../pages/api/chatGPT';
-
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
 
 export const countAllTokens = async (messages: Message[]) => {

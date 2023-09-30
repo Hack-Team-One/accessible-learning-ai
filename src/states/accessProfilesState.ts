@@ -1,22 +1,17 @@
 import { atom } from 'recoil';
 
-export type AccessProfilesType = {
-  seizureSafeProfile: boolean;
-  visionImpairedProfile: boolean;
-  adhdFriendlyProfile: boolean;
-  cognitiveDisabilityProfile: boolean;
-  keyboardNavigationProfile: boolean;
-  blindUsersProfile: boolean;
+export const defaultAccessProfilesState = {
+  seizureSafeProfile: false,
+  visionImpairedProfile: false,
+  adhdFriendlyProfile: false,
+  cognitiveDisabilityProfile: false,
+  keyboardNavigationProfile: false,
+  blindUsersProfile: false,
 };
 
-export const accessProfilesState = atom<AccessProfilesType>({
+export type AccessProfilesStateType = typeof defaultAccessProfilesState;
+
+export const accessProfilesState = atom<AccessProfilesStateType>({
   key: 'accessProfilesState',
-  default: {
-    seizureSafeProfile: false,
-    visionImpairedProfile: false,
-    adhdFriendlyProfile: false,
-    cognitiveDisabilityProfile: false,
-    keyboardNavigationProfile: false,
-    blindUsersProfile: false,
-  },
+  default: {...defaultAccessProfilesState},
 });

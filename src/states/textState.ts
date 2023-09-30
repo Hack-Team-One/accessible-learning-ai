@@ -1,7 +1,7 @@
 import { atom } from 'recoil';
 import { FontNames } from '@/utils/enums';
 
-const defaultTextColorState = {
+export const defaultTextColorState = {
   primary: 'black',
   secondary: 'blue',
   tertiary: 'red',
@@ -9,14 +9,14 @@ const defaultTextColorState = {
   titleSecondary: 'blue',
 };
 
-export const textColorState = atom({
+export type TextColorStateType = typeof defaultTextColorState;
+
+export const textColorState = atom<TextColorStateType>({
   key: 'textColorState',
-  default: {...defaultTextColorState}
+  default: {...defaultTextColorState},
 });
 
-export type textColorStateType = typeof defaultTextColorState;
-
-const defaultTextFontState = { 
+export const defaultTextFontState = { 
   primary: FontNames.Arial,
   secondary: FontNames.Arial,
   tertiary: FontNames.Arial,
@@ -24,14 +24,14 @@ const defaultTextFontState = {
   titleSecondary: FontNames.Arial,
 };
 
-export const textFontState = atom({
+export type TextFontStateType = typeof defaultTextFontState;
+
+export const textFontState = atom<TextFontStateType>({
   key: 'textFontState',
-  default: {...defaultTextFontState}
+  default: {...defaultTextFontState},
 });
 
-export type textFontStateType = typeof defaultTextFontState;
-
-const defaultFontSizeState = {
+export const defaultFontSizeState = {
   multiplier: 1,
   text_xs: 12,
   text_sm: 14,
@@ -48,16 +48,16 @@ const defaultFontSizeState = {
   text_9xl: 128,
   titlePrimary: 48, // adjust these initial values to match figma design
   titleSecondary: 60, // adjust these initial values to match figma design
-}
+};
 
-export const fontSizeState = atom<fontSizeStateType>({
+export type FontSizeStateType = typeof defaultFontSizeState;
+
+export const fontSizeState = atom<FontSizeStateType>({
   key: 'fontSizeState',
-  default: {...defaultFontSizeState}
+  default: {...defaultFontSizeState},
 });
 
-export type fontSizeStateType = typeof defaultFontSizeState;
-
-const defaultLineHeightState = {
+export const defaultLineHeightState = {
   multiplier: 1,
   text_xs: 16,
   text_sm: 20,
@@ -74,12 +74,11 @@ const defaultLineHeightState = {
   text_9xl: 128,
   titlePrimary: 48, // adjust these initial values to match figma design
   titleSecondary: 60, // adjust these initial values to match figma design
-}
+};
 
-export const lineHeightState = atom({
+export type LineHeightStateType = typeof defaultLineHeightState;
+
+export const lineHeightState = atom<LineHeightStateType>({
   key: 'lineHeightState',
-  default: {...defaultLineHeightState}
+  default: {...defaultLineHeightState},
 });
-
-export type lineHeightStateType = typeof defaultLineHeightState;
-
