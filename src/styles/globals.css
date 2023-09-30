@@ -60,4 +60,7 @@ body {
   button-centered {
     @apply whitespace-nowrap flex justify-center items-center;
   }
+  messages {
+    @apply text-left p-4
+  }
 }

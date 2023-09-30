@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import OpenAI from 'openai';
-import { countTokens } from '../../utils';
+import { countAllTokens } from '../../utils';
 import { Message } from '../../types';
 
 export const CHATGPT_MODEL: string = process.env.NEXT_PUBLIC_CHATGPT_MODEL || 'gpt-3.5-turbo';
@@ -12,14 +12,15 @@ const openai = new OpenAI({
   dangerouslyAllowBrowser: true,
 });
 
-const chatGPT = async (req: NextApiRequest, res: NextApiResponse) => {
+export default async function chatGPT (req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     return res.status(405).end();
   }
 
   const { messages }: { messages: Message[] } = req.body;
 
-  const totalTokens: number = await countTokens(messages);
+  const totalTokens: number = await countAllTokens(messages);
+  console.log('totalTokens:', totalTokens)
 
   if (totalTokens > MAX_TOKEN_LIMIT) {
     return res.status(400).json({ error: 'Token limit exceeded' });
@@ -40,5 +41,3 @@ const chatGPT = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(500).json({ error: 'An error occurred while processing your request.' });
   }
 };
-
-export default chatGPT;

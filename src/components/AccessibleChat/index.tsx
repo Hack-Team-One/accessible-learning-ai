@@ -53,13 +53,15 @@ const AccessibleChat: React.FC = () => {
 
     handleSubmit(e as any, false);
   };
+
+  console.log('text base Acc Chat =', `messages text-${textSize.text_base}`)
   
 
   return (
     <form className="h-screen w-full justify-center items-center mx-2 flex flex-col gap-3 md:mx-4 lg:mx-auto lg:max-w-2xl xl:max-w-3xl" onSubmit={handleSubmit}>
-      <div id="responseDiv" className="flex-1 w-full overflow-auto p-4">
+      <div id="responseDiv" className={`flex-1 w-full ${borderStyles.primary} overflow-auto p-4`}>
         {messages.map((message, index) => (
-          <div key={index} className={`${message.role === 'user' ? 'text-right' : 'text-left'}`}>
+          <div key={index} className={`messages ${message.role === 'user' ? `text-${textSize.text_base}` : `${textStyles.response} ${bgStyles.response}`}`}>
             {message.content}
           </div>
         ))}

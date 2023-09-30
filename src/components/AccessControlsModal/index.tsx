@@ -45,12 +45,13 @@ export default function AccessControlsModal({ open, onClose, slots}: ModalProps)
   // const [letterSpacing, setLetterSpacing] = useRecoilState(letterSpacingState);
 
   const handleUpdateValue = (stateKey: string, newValue: number) => {
-    // if (stateKey === contentScalingState.key) setContentScaling(Object.assign(contentScaling, { multiplier: newValue }));
-    if (stateKey === fontSizeState.key) setFontSize(Object.assign(fontSize, { multiplier: newValue }));
-    else if (stateKey === lineHeightState.key) setLineHeight(Object.assign(lineHeight, { multiplier: newValue }));
-    // else if (stateKey === letterSpacingState.key) setLetterSpacing(Object.assign(letterSpacing, { multiplier: newValue }));
+    // if (stateKey === contentScalingState.key) setContentScaling(Object.assign({...contentScaling}, { multiplier: newValue }));
+    if (stateKey === fontSizeState.key) setFontSize(Object.assign({...fontSize}, { multiplier: newValue }));
+    else if (stateKey === lineHeightState.key) setLineHeight(Object.assign({...lineHeight}, { multiplier: newValue }));
+    // else if (stateKey === letterSpacingState.key) setLetterSpacing(Object.assign({...letterSpacing}, { multiplier: newValue }));
   };
-
+  const fontM  = fontSize.multiplier
+  console.log('fontSize =', { fontM, fontSize });
   return (
     <div>
       <StyledModal

@@ -4,8 +4,10 @@ import OpenAI from 'openai';
 
 export { CHATGPT_MODEL, MAX_TOKEN_LIMIT } from '../pages/api/chatGPT';
 
-export const countTokens = async (messages: Message[]) => {
-  const response = await fetch('/api/countTokens', {
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+
+export const countAllTokens = async (messages: Message[]) => {
+  const response = await fetch(`${BASE_URL}/api/countTokens`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -20,7 +22,7 @@ export const countTokens = async (messages: Message[]) => {
 
 export const sendMessageToChatGPT = async (messages: Message[]) => {
   try {
-    const response = await fetch('/api/chatGPT', {
+    const response = await fetch(`${BASE_URL}/api/chatGPT`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

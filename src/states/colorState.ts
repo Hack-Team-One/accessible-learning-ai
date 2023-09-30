@@ -6,6 +6,7 @@ export const bgColorState = atom({
     primary: 'white',
     secondary: 'blue-900',
     tertiary: 'gray-100',
+    response: 'gray-300',
     buttonPrimary: 'blue-500',
     buttonSecondary: 'purple',
   },

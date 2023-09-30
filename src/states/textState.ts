@@ -12,8 +12,6 @@ export const textColorState = atom({
   }
 });
 
-
-
 export const textFontState = atom({
   key: 'textFontState',
   default: { 
