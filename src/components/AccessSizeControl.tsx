@@ -4,7 +4,7 @@ import { Button } from '@mui/base/Button';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-interface AccessSizeControlProps {
+type AccessSizeControlProps = {
   title: string;
   text: string;
   icon: React.ReactNode;

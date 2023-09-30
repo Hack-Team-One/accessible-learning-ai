@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Switch as BaseSwitch, SwitchProps } from '@mui/base/Switch';
 import useIsDarkMode from '../hooks/useIsDarkMode';
 
-interface CustomSwitchProps {
+type CustomSwitchProps = {
   value: boolean;
   onChange: (newValue: boolean) => void;
   label: string;

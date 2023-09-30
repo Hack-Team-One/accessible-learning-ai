@@ -21,7 +21,7 @@ import HeightIcon from '@mui/icons-material/Height';
 import SyncAltIcon from '@mui/icons-material/SyncAlt';
 import useDynamicStyles from '../../hooks/useDynamicStyles';
 
-interface ModalProps {
+type ModalProps = {
   open: boolean;
   onClose: () => void;
   slots: {
