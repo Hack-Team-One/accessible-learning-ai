@@ -8,7 +8,6 @@ export const defaultAccessProfilesState = {
   keyboardNavigationProfile: false,
   blindUsersProfile: false,
 };
-
 export type AccessProfilesStateType = typeof defaultAccessProfilesState;
 
 export const accessProfilesState = atom<AccessProfilesStateType>({

@@ -8,12 +8,36 @@ export const defaultTextColorState = {
   titlePrimary: 'black',
   titleSecondary: 'blue',
 };
-
 export type TextColorStateType = typeof defaultTextColorState;
 
 export const textColorState = atom<TextColorStateType>({
   key: 'textColorState',
   default: {...defaultTextColorState},
+});
+
+export const defaultContentScalingState = {
+  multiplier: 1,
+  text_xs: 0,
+  text_sm: 0,
+  text_base: 0,
+  text_lg: 0,
+  text_xl: 0,
+  text_2xl: 0,
+  text_3xl: 0,
+  text_4xl: 0,
+  text_5xl: 0,
+  text_6xl: 0,
+  text_7xl: 0,
+  text_8xl: 0,
+  text_9xl: 0,
+  titlePrimary: 0, // adjust these initial values to match figma design
+  titleSecondary: 0, // adjust these initial values to match figma design
+};
+export type ContentScalingStateType = typeof defaultContentScalingState;
+
+export const contentScalingState = atom<ContentScalingStateType>({
+  key: 'contentScalingState',
+  default: {...defaultContentScalingState},
 });
 
 export const defaultTextFontState = { 
@@ -23,7 +47,6 @@ export const defaultTextFontState = {
   titlePrimary: FontNames.Arial,
   titleSecondary: FontNames.Arial,
 };
-
 export type TextFontStateType = typeof defaultTextFontState;
 
 export const textFontState = atom<TextFontStateType>({
@@ -49,7 +72,6 @@ export const defaultFontSizeState = {
   titlePrimary: 48, // adjust these initial values to match figma design
   titleSecondary: 60, // adjust these initial values to match figma design
 };
-
 export type FontSizeStateType = typeof defaultFontSizeState;
 
 export const fontSizeState = atom<FontSizeStateType>({
@@ -75,10 +97,34 @@ export const defaultLineHeightState = {
   titlePrimary: 48, // adjust these initial values to match figma design
   titleSecondary: 60, // adjust these initial values to match figma design
 };
-
 export type LineHeightStateType = typeof defaultLineHeightState;
 
 export const lineHeightState = atom<LineHeightStateType>({
   key: 'lineHeightState',
   default: {...defaultLineHeightState},
+});
+
+export const defaultLetterSpacingState = {
+  multiplier: 1,
+  text_xs: 0,
+  text_sm: 0,
+  text_base: 0,
+  text_lg: 0,
+  text_xl: 0,
+  text_2xl: 0,
+  text_3xl: 0,
+  text_4xl: 0,
+  text_5xl: 0,
+  text_6xl: 0,
+  text_7xl: 0,
+  text_8xl: 0,
+  text_9xl: 0,
+  titlePrimary: 0, // adjust these initial values to match figma design
+  titleSecondary: 0, // adjust these initial values to match figma design
+};
+export type LetterSpacingStateType = typeof defaultLetterSpacingState;
+
+export const letterSpacingState = atom<LetterSpacingStateType>({
+  key: 'letterSpacingState',
+  default: {...defaultLetterSpacingState},
 });

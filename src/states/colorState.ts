@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 
-export const defaultbgColorState = {
+export const defaultBgColorState = {
   primary: 'white',
   secondary: 'blue-900',
   tertiary: 'gray-100',
@@ -8,12 +8,11 @@ export const defaultbgColorState = {
   buttonPrimary: 'blue-500',
   buttonSecondary: 'purple',
 };
-
-export type BgColorStateType = typeof defaultbgColorState;
+export type BgColorStateType = typeof defaultBgColorState;
 
 export const bgColorState = atom<BgColorStateType>({
   key: 'bgColorPrimaryState',
-  default: {...defaultbgColorState},
+  default: {...defaultBgColorState},
 });
 
 export const defaultBorderColorState = {
@@ -21,7 +20,6 @@ export const defaultBorderColorState = {
   secondary: 'blue',
   tertiary: 'gray',
 };
-
 export type BorderColorStateType = typeof defaultBorderColorState;
 
 export const borderColorState = atom<BorderColorStateType>({
