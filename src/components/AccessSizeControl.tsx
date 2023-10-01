@@ -8,19 +8,32 @@ type AccessSizeControlProps = {
   title: string;
   text: string;
   icon: React.ReactNode;
-  stateKey: string;
-  value: number
-  handleUpdateValue: (stateKey: string, newValue: number) => void;
+  defaultState: any;
+  state: any;
+  setState: any;
 } 
 
 function AccessSizeControl({
   title,
   text,
   icon,
-  stateKey,
-  value,
-  handleUpdateValue,
+  defaultState,
+  state,
+  setState,
 }: AccessSizeControlProps) {
+
+  const handleUpdateValue = (newValue: number) => {
+    const fontSizeKeys: string[] = Object.keys(state)
+    const updatedFontSize: Record<string, number> = {};
+    const originalFontSize: Record<string, number> = {...defaultState};
+
+    fontSizeKeys.forEach((key: string) => {
+      updatedFontSize[key] = Math.round(originalFontSize[key] * newValue);
+    });
+
+
+    setState(Object.assign({...state}, updatedFontSize));
+  };
 
   return (
     <div className="bg-slate-100 grid grid-cols-3 mt-5 rounded-md">
@@ -31,7 +44,7 @@ function AccessSizeControl({
       <div>
         <Button
           className="bg-blue-500 rounded-full ml-10 mb-5 hover:scale-110"
-          onClick={() => handleUpdateValue(stateKey, value - .1)}
+          onClick={() => handleUpdateValue(state.multiplier - .1)}
         >
           <KeyboardArrowDownIcon className='text-white' />
         </Button>
@@ -42,7 +55,7 @@ function AccessSizeControl({
       <div className="relative">
         <Button
           className="bg-blue-500 rounded-full absolute right-10 mb-5 hover:scale-110"
-          onClick={() => handleUpdateValue(stateKey, value + .1)}
+          onClick={() => handleUpdateValue(state.multiplier + .1)}
         >
           <KeyboardArrowUpIcon className="text-white"/>
         </Button>
