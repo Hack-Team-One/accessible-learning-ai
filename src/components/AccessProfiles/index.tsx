@@ -15,7 +15,7 @@ const AccessProfiles: React.FC = () => {
 
   return (
     <div className="flex flex-col">
-      <h1>Accessibility Profiles</h1>
+      {/* <h1>Accessibility Profiles</h1> */}
       <CustomSwitch
         key={AccessProfileNames.SeizureSafeProfile}
         label={camelCaseToUpperCaseSpaces(AccessProfileNames.SeizureSafeProfile) || ''}

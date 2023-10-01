@@ -2,6 +2,8 @@ import React from 'react';
 import clsx from 'clsx';
 import { styled, Box, Theme } from '@mui/system';
 import { Modal } from '@mui/base/Modal';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
 import AccessProfiles from '../AccessProfiles';
 import { useRecoilState } from 'recoil';
 import {
@@ -46,15 +48,10 @@ export default function AccessControlsModal({ open, onClose, slots}: ModalProps)
 
   return (
     <div>
-      <StyledModal
-        aria-labelledby="unstyled-modal-title"
-        aria-describedby="unstyled-modal-description"
-        open={open}
-        onClose={onClose}
-        slots={{ backdrop: StyledBackdrop }}
-      >
+      <Dialog onClose={onClose} open={open} scroll="body">
         <Box sx={style}>
-          <h2 id="accessibility-controls-modal" className={`${fontSize.text_lg} text-center col-span-2`}>Accessibility Adjustments</h2>
+          <DialogTitle className={`${fontSize.text_lg} text-center col-span-2`}>Accessibility Adjustments</DialogTitle>
+          {/* <h2 id="accessibility-controls-modal" className={`${fontSize.text_lg} text-center col-span-2`}>Accessibility Adjustments</h2> */}
           <span id="transition-modal-description" style={{ marginTop: 16 }} className={`${fontSize.text_base}`} >
             Adjust the following settings to make the website more accessible.
           </span>
@@ -95,7 +92,18 @@ export default function AccessControlsModal({ open, onClose, slots}: ModalProps)
           </div>
           {/* <button onClick={toggleMode}>Toggle Theme</button> */}
         </Box>
-      </StyledModal>
+
+      </Dialog>
+      {/* <StyledModal
+        aria-labelledby="unstyled-modal-title"
+        aria-describedby="unstyled-modal-description"
+        open={open}
+        onClose={onClose}
+        slots={{ backdrop: StyledBackdrop }}
+        
+      > */}
+        
+      {/* </StyledModal> */}
     </div>
   );
 }
@@ -142,6 +150,7 @@ const StyledModal = styled(Modal)`
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: scroll;
 `;
 
 const StyledBackdrop = styled(Backdrop)`
