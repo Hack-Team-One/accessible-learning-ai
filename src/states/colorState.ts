@@ -1,5 +1,19 @@
 import { atom } from 'recoil';
 
+export const defaultTextColorState = {
+  primary: 'black',
+  secondary: 'blue',
+  tertiary: 'white',
+  titlePrimary: 'black',
+  titleSecondary: 'blue',
+};
+export type TextColorStateType = typeof defaultTextColorState;
+
+export const textColorState = atom<TextColorStateType>({
+  key: 'textColorState',
+  default: {...defaultTextColorState},
+});
+
 export const defaultBgColorState = {
   primary: 'white',
   secondary: 'blue-900',

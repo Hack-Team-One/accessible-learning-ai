@@ -14,7 +14,7 @@ export const FormContainer = styled.form<DynamicStylingProps>`
   padding: 0.5rem;
   justify-content: center;
   align-items: center;
-  font-family: ${props => props.textFont};
+  font-family: ${props => props?.textFont?.primary};
   @media (min-width: 768px) {
     padding: 1rem;
   }
@@ -28,34 +28,21 @@ export const FormContainer = styled.form<DynamicStylingProps>`
   }
 `;
 
-export const ResponseDiv = styled.div<DynamicStylingProps>`
+export const ResponseDiv = styled.div`
   flex: 1;
   width: 100%;
-  border: 1px solid ${props => props.borderColor};
+  border: 1px solid ${(props) => props.theme.palette.border.primary};
   overflow: auto;
   padding: 1rem;
   border-radius: 0.375rem;
-  background-color: ${props => props.bgColor};
+  background-color: ${(props) => props.theme.palette.background.default};
 `;
 
 export const MessageDiv = styled.div<DynamicStylingProps>`
-  font-size: ${props => props.fontSize}px;
-  line-height: ${props => props.lineHeight};
-  letter-spacing: ${props => props.letterSpacing}px;
-  color: ${props => (props.role === 'user' ? 'inherit' : props.textColor)};
-  background-color: ${props => (props.role === 'user' ? 'transparent' : props.bgColor)};
-`;
-
-export const RegenerateButton = styled(MUIButton)<DynamicStylingProps>`
-  color: ${props => props.textColor};
-  background-color: ${props => props.bgColor};
-  border: 1px solid ${props => props.borderColor};
-  border-radius: 0.375rem;
-  padding: 0.25rem;
-  position: relative;
-  right: 50%;
-  transform: translateX(50%);
-  z-index: 1;
+  font-size: ${(props) => props?.fontSize?.text_base};
+  line-height: ${(props) => props?.lineHeight?.text_base};
+  color: ${(props) => (props.role === 'user' ? 'inherit' : props.theme.palette.text.primary)};
+  background-color: ${(props) => (props.role === 'user' ? 'transparent' : props.theme.palette.background.response)};
 `;
 
 export const PromptDiv = styled.div<DynamicStylingProps>`
@@ -77,7 +64,7 @@ export const TextareaContainer = styled.div<DynamicStylingProps>`
 `;
 
 export const TextareaPrompt = styled(TextareaAutosize)<DynamicStylingProps>`
-  color: ${props => props.textColor};
+  color: ${props => props?.textColor?.primary};
   width: 100%;
   resize: none;
   border: none;
@@ -93,9 +80,21 @@ export const TextareaPrompt = styled(TextareaAutosize)<DynamicStylingProps>`
   }
 `;
 
+export const RegenerateButton = styled(MUIButton)<DynamicStylingProps>`
+  color: ${(props) => props.theme.palette.text.primary};
+  background-color: ${(props) => props.theme.palette.background.buttonPrimary};
+  border: 1px solid ${props => props?.borderColor?.primary};
+  border-radius: 0.375rem;
+  padding: 0.25rem;
+  position: relative;
+  right: 50%;
+  transform: translateX(50%);
+  z-index: 1;
+`;
+
 export const SendButton = styled(MUIButton)<DynamicStylingProps>`
-  color: ${props => props.textColor};
-  background-color: ${props => props.bgColor};
+color: ${(props) => props.theme.palette.text.tertiary};
+  background-color: ${(props) => props.theme.palette.background.buttonSecondary};
   position: absolute;
   padding: 0.25rem;
   min-width: 7.5rem;
@@ -109,7 +108,7 @@ export const SendButton = styled(MUIButton)<DynamicStylingProps>`
 `;
 
 export const InfoText = styled.p<DynamicStylingProps>`
-  font-size: ${props => props.fontSize}px;
+  font-size: ${props => props?.fontSize?.text_xs}px;
   color: rgba(107, 114, 128, 1);
   margin-bottom: 0.75rem;
 `;

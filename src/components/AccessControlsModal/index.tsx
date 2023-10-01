@@ -21,6 +21,7 @@ import FormatLineSpacingIcon from '@mui/icons-material/FormatLineSpacing';
 import HeightIcon from '@mui/icons-material/Height';
 import SyncAltIcon from '@mui/icons-material/SyncAlt';
 import useDynamicStyling from '../../hooks/useDynamicStyling';
+import useIsDarkMode from '../../hooks/useIsDarkMode';
 
 type ModalProps = {
   open: boolean;
@@ -31,17 +32,17 @@ type ModalProps = {
 }
 
 export default function AccessControlsModal({ open, onClose, slots}: ModalProps) {
+  const { isDarkMode, toggleMode } = useIsDarkMode();
   const {
     textFont,
-    textColor,
-    bgColor,
-    borderColor,
   } = useDynamicStyling();
   
   const [contentScaling, setContentScaling] = useRecoilState<ContentScalingStateType>(contentScalingState);
   const [fontSize, setFontSize] = useRecoilState<FontSizeStateType>(fontSizeState);
   const [lineHeight, setLineHeight] = useRecoilState<LineHeightStateType>(lineHeightState);
   const [letterSpacing, setLetterSpacing] = useRecoilState<LetterSpacingStateType>(letterSpacingState);
+
+  console.log('multiplier =', (fontSize.multiplier), 'text_base =', (fontSize.text_base), 'fontSize =', fontSize );
 
   return (
     <div>
@@ -92,6 +93,7 @@ export default function AccessControlsModal({ open, onClose, slots}: ModalProps)
             setState={setLetterSpacing}
           />
           </div>
+          {/* <button onClick={toggleMode}>Toggle Theme</button> */}
         </Box>
       </StyledModal>
     </div>

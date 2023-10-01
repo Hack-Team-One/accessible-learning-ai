@@ -28,8 +28,14 @@ function AccessSizeControl({
     const originalFontSize: Record<string, number> = {...defaultState};
 
     fontSizeKeys.forEach((key: string) => {
-      updatedFontSize[key] = Math.round(originalFontSize[key] * newValue);
+      const newMultiplier = Number(newValue.toFixed(1))
+      if (key === 'multiplier') updatedFontSize[key] = newMultiplier;
+      else {
+        updatedFontSize[key] = Math.round(originalFontSize[key] * newMultiplier);
+      }
     });
+
+    console.log('updatedFontSize =', updatedFontSize)
 
 
     setState(Object.assign({...state}, updatedFontSize));

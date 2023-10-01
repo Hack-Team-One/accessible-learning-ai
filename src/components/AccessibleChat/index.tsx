@@ -27,9 +27,6 @@ const AccessibleChat: React.FC = () => {
 
   const {
     textFont,
-    textColor,
-    bgColor,
-    borderColor,
     contentScaling,
     fontSize,
     lineHeight,
@@ -68,19 +65,18 @@ const AccessibleChat: React.FC = () => {
     handleSubmit(e as any, false);
   };
 
+  console.log('ACCESS CHAT FONTSIZE = ', fontSize)
+
   return (
     <FormContainer 
       textFont={textFont}
-      textColor={textColor}
-      bgColor={bgColor}
-      borderColor={borderColor}
       contentScaling={contentScaling}
       fontSize={fontSize}
       lineHeight={lineHeight}
       letterSpacing={letterSpacing}
       onSubmit={handleSubmit}
     >
-      <ResponseDiv id="responseDiv" borderColor={borderColor} bgColor={bgColor}>
+      <ResponseDiv id="responseDiv" >
         {messages.map((message, index) => (
           <MessageDiv 
             key={index} 
@@ -88,17 +84,12 @@ const AccessibleChat: React.FC = () => {
             fontSize={fontSize}
             lineHeight={lineHeight}
             letterSpacing={letterSpacing}
-            textColor={textColor}
-            bgColor={bgColor}
           >
             {message.content}
           </MessageDiv>
         ))}
         {messages.length > 0 && (
           <RegenerateButton
-            textColor={textColor}
-            bgColor={bgColor}
-            borderColor={borderColor}
             disabled={messages.length < 1}
             onClick={handleRegenerate}
           >
@@ -114,11 +105,8 @@ const AccessibleChat: React.FC = () => {
             maxRows={10}
             onChange={(e) => setUserInput(e.target.value)}
             placeholder="Send a message..."
-            textColor={textColor}
           />
           <SendButton
-            textColor={textColor}
-            bgColor={bgColor}
             disabled={userInput.trim().length < 2}
             type="submit"
           >

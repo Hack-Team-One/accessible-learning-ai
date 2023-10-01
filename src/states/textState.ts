@@ -1,18 +1,18 @@
 import { atom } from 'recoil';
 import { FontNames } from '@/utils/enums';
 
-export const defaultTextColorState = {
-  primary: 'black',
-  secondary: 'blue',
-  tertiary: 'red',
-  titlePrimary: 'black',
-  titleSecondary: 'blue',
+export const defaultTextFontState = { 
+  primary: FontNames.Arial,
+  secondary: FontNames.Arial,
+  tertiary: FontNames.Arial,
+  titlePrimary: FontNames.Arial,
+  titleSecondary: FontNames.Arial,
 };
-export type TextColorStateType = typeof defaultTextColorState;
+export type TextFontStateType = typeof defaultTextFontState;
 
-export const textColorState = atom<TextColorStateType>({
-  key: 'textColorState',
-  default: {...defaultTextColorState},
+export const textFontState = atom<TextFontStateType>({
+  key: 'textFontState',
+  default: {...defaultTextFontState},
 });
 
 export const defaultContentScalingState = {
@@ -38,20 +38,6 @@ export type ContentScalingStateType = typeof defaultContentScalingState;
 export const contentScalingState = atom<ContentScalingStateType>({
   key: 'contentScalingState',
   default: {...defaultContentScalingState},
-});
-
-export const defaultTextFontState = { 
-  primary: FontNames.Arial,
-  secondary: FontNames.Arial,
-  tertiary: FontNames.Arial,
-  titlePrimary: FontNames.Arial,
-  titleSecondary: FontNames.Arial,
-};
-export type TextFontStateType = typeof defaultTextFontState;
-
-export const textFontState = atom<TextFontStateType>({
-  key: 'textFontState',
-  default: {...defaultTextFontState},
 });
 
 export const defaultFontSizeState = {

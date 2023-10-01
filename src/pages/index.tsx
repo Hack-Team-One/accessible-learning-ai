@@ -6,14 +6,15 @@ import AccessibleChat from '../components/AccessibleChat';
 import { Button } from '@mui/base';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import useDynamicStyles from '../hooks/useDynamicStyling';
+import { useTheme } from '@mui/system';
 
 const Home: React.FC = () => {
   const [openModal, setOpenModal] = React.useState<boolean>(false);
+
+  const theme = useTheme();
+
   const {
     textFont,
-    textColor,
-    bgColor,
-    borderColor,
     contentScaling,
     fontSize,
     lineHeight,
