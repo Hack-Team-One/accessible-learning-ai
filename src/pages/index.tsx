@@ -10,12 +10,14 @@ import useDynamicStyles from '../hooks/useDynamicStyling';
 const Home: React.FC = () => {
   const [openModal, setOpenModal] = React.useState<boolean>(false);
   const {
-    textColor,
     textFont,
-    textSize,
-    textStyles,
-    bgStyles,
-    borderStyles,
+    textColor,
+    bgColor,
+    borderColor,
+    contentScaling,
+    fontSize,
+    lineHeight,
+    letterSpacing,
   } = useDynamicStyles();
 
 
@@ -37,7 +39,7 @@ const Home: React.FC = () => {
         onClick={() => setOpenModal(true)} 
         className="absolute bottom-3 right-3 hover:shadow-xl rounded-full border border-black w-12 h-12 md:w-14 md:h-14 z-[99999999]"
       >
-        <AccessibilityNewIcon className={`${textSize.text_lg}`} />
+        <AccessibilityNewIcon />
       </Button>
     </div>
   );
