@@ -19,7 +19,7 @@ import ZoomOutMapIcon from '@mui/icons-material/ZoomOutMap';
 import FormatLineSpacingIcon from '@mui/icons-material/FormatLineSpacing';
 import HeightIcon from '@mui/icons-material/Height';
 import SyncAltIcon from '@mui/icons-material/SyncAlt';
-import useDynamicStyles from '../../hooks/useDynamicStyles';
+import useDynamicStyles from '../../hooks/useDynamicStyling';
 
 type ModalProps = {
   open: boolean;

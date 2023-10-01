@@ -5,7 +5,7 @@ import AccessControlsModal, { Backdrop } from '../components/AccessControlsModal
 import AccessibleChat from '../components/AccessibleChat';
 import { Button } from '@mui/base';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
-import useDynamicStyles from '../hooks/useDynamicStyles';
+import useDynamicStyles from '../hooks/useDynamicStyling';
 
 const Home: React.FC = () => {
   const [openModal, setOpenModal] = React.useState<boolean>(false);

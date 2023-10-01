@@ -1,26 +1,40 @@
 import React, { useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { Button, TextareaAutosize } from '@mui/base';
+import { useRecoilValue } from 'recoil';
+import { Button as MUIButton, TextareaAutosize } from '@mui/base';
 import { sendMessageToChatGPT, CHATGPT_MODEL } from '../../utils';
 import SendIcon from '@mui/icons-material/Send';
 import LoopIcon from '@mui/icons-material/Loop';
 import { Message } from '../../types';
-import useDynamicStyles from '../../hooks/useDynamicStyles';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+import useDynamicStyling from '../../hooks/useDynamicStyling';
 import { validateMessages } from '../../utils/validation';
+import {
+  FormContainer,
+  ResponseDiv,
+  MessageDiv,
+  RegenerateButton,
+  PromptDiv,
+  TextareaContainer,
+  TextareaPrompt,
+  SendButton,
+  InfoText,
+} from './styles';
 
 const AccessibleChat: React.FC = () => {
-  const {
-    textColor,
-    textFont,
-    textSize,
-    textStyles,
-    bgStyles,
-    borderStyles,
-  } = useDynamicStyles();
-
-
   const [userInput, setUserInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([]); // Maintains conversation history
+
+  const {
+    textFont,
+    textColor,
+    bgColor,
+    borderColor,
+    contentScaling,
+    fontSize,
+    lineHeight,
+    letterSpacing,
+  } = useDynamicStyling();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, includeUserInput: boolean = true) => {
     e.preventDefault();
@@ -54,51 +68,69 @@ const AccessibleChat: React.FC = () => {
     handleSubmit(e as any, false);
   };
 
-  console.log('text base Acc Chat =', `messages text-${textSize.text_base}`)
-  
-
   return (
-    <form className="h-screen w-full justify-center items-center mx-2 flex flex-col gap-3 md:mx-4 lg:mx-auto lg:max-w-2xl xl:max-w-3xl" onSubmit={handleSubmit}>
-      <div id="responseDiv" className={`flex-1 w-full ${borderStyles.primary} overflow-auto p-4`}>
+    <FormContainer 
+      textFont={textFont}
+      textColor={textColor}
+      bgColor={bgColor}
+      borderColor={borderColor}
+      contentScaling={contentScaling}
+      fontSize={fontSize}
+      lineHeight={lineHeight}
+      letterSpacing={letterSpacing}
+      onSubmit={handleSubmit}
+    >
+      <ResponseDiv id="responseDiv" borderColor={borderColor} bgColor={bgColor}>
         {messages.map((message, index) => (
-          <div key={index} className={`messages ${message.role === 'user' ? `text-${textSize.text_base}` : `${textStyles.response} ${bgStyles.response}`}`}>
+          <MessageDiv 
+            key={index} 
+            role={message.role}
+            fontSize={fontSize}
+            lineHeight={lineHeight}
+            letterSpacing={letterSpacing}
+            textColor={textColor}
+            bgColor={bgColor}
+          >
             {message.content}
-          </div>
+          </MessageDiv>
         ))}
-        {messages.length > 0 && <Button
-          className={`${textStyles.primary} ${bgStyles.buttonPrimary} ${borderStyles.primary} button-centered float-right p-1 `}
-          disabled={messages.length < 1}
-          onClick={handleRegenerate}
-          style={{ zIndex: 1 }}
-        >
-          <LoopIcon /> Regenerate
-        </Button>}
-      </div>
-      <div id="promptDiv" className="flex w-full justify-center items-center gap-3">
-        <div className="flex flex-col w-full relative border border-black/10 dark:border-gray-900/50 dark:text-white rounded-xl shadow-xs dark:shadow-xs dark:bg-gray-700 bg-white">
-          <TextareaAutosize
+        {messages.length > 0 && (
+          <RegenerateButton
+            textColor={textColor}
+            bgColor={bgColor}
+            borderColor={borderColor}
+            disabled={messages.length < 1}
+            onClick={handleRegenerate}
+          >
+            <LoopIcon /> Regenerate
+          </RegenerateButton>
+        )}
+      </ResponseDiv>
+      <PromptDiv id="promptDiv">
+        <TextareaContainer>
+          <TextareaPrompt
             id="prompt-textarea"
             value={userInput}
             maxRows={10}
             onChange={(e) => setUserInput(e.target.value)}
             placeholder="Send a message..."
-            className={`${textStyles.primary} w-full resize-none border-0 bg-transparent py-[10px] pr-10 focus:ring-0 focus-visible:ring-0 dark:bg-transparent md:py-4 md:pr-12 pl-3 md:pl-4 overflow-y-auto`}
+            textColor={textColor}
           />
-          <Button
-            className={`${textStyles.primary} ${bgStyles.buttonSecondary} button-centered absolute p-1 min-w-120 md:bottom-3 md:p-2 md:right-3 dark:hover:bg-gray-900 dark:disabled:hover:bg-transparent right-2 transition-colors disabled:opacity-40`}
+          <SendButton
+            textColor={textColor}
+            bgColor={bgColor}
             disabled={userInput.trim().length < 2}
             type="submit"
-            style={{ zIndex: 1 }}
           >
             <SendIcon />
-          </Button>
-        </div>
-      </div>
-      <p className={`${textSize.text_xs} text-gray-500 mb-3`}>
+          </SendButton>
+        </TextareaContainer>
+      </PromptDiv>
+      <InfoText fontSize={fontSize}>
         ChatGPT may produce inaccurate information about people, places, or facts. <u>ChatGPT model: {CHATGPT_MODEL}</u>
-      </p>
-    </form>
-  );
+      </InfoText>
+    </FormContainer>
+  );  
 };
 
 export default AccessibleChat;
