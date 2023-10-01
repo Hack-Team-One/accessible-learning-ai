@@ -28,14 +28,16 @@ export const FormContainer = styled.form<DynamicStylingProps>`
   }
 `;
 
+// border: 1px solid ${(props) => props.theme.palette.border.primary};
+// background-color: ${(props) => props.theme.palette.background.default};
 export const ResponseDiv = styled.div`
   flex: 1;
   width: 100%;
-  border: 1px solid ${(props) => props.theme.palette.border.primary};
+  
   overflow: auto;
   padding: 1rem;
   border-radius: 0.375rem;
-  background-color: ${(props) => props.theme.palette.background.default};
+  
 `;
 
 export const MessageDiv = styled.div<DynamicStylingProps>`
@@ -92,9 +94,11 @@ export const RegenerateButton = styled(MUIButton)<DynamicStylingProps>`
   z-index: 1;
 `;
 
+// color: ${(props) => props.theme.palette.text.tertiary};
+//  background-color: ${(props) => props.theme.palette.background.buttonSecondary};
 export const SendButton = styled(MUIButton)<DynamicStylingProps>`
-color: ${(props) => props.theme.palette.text.tertiary};
-  background-color: ${(props) => props.theme.palette.background.buttonSecondary};
+
+ 
   position: absolute;
   padding: 0.25rem;
   min-width: 7.5rem;
