@@ -13,7 +13,7 @@ export enum FontNames {
     ComicSans = 'ComicSans',
 }
 
-export const enum AccessProfileNames {
+export enum AccessProfileNames {
     SeizureSafeProfile = 'seizureSafeProfile',
     VisionImpairedProfile = 'visionImpairedProfile',
     AdhdFriendlyProfile = 'adhdFriendlyProfile',

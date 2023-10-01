@@ -100,9 +100,7 @@ export default function AccessControlsModal({ open, onClose, slots}: ModalProps)
         open={open}
         onClose={onClose}
         slots={{ backdrop: StyledBackdrop }}
-        
       > */}
-        
       {/* </StyledModal> */}
     </div>
   );
