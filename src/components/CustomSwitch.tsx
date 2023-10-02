@@ -50,7 +50,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>((props, ref) => {
           ...props.slotProps,
           root: (ownerState) => ({
               className: clsx(
-                `relative inline-block w-24 h-8 m-2.5 border ${borderColor} rounded-2xl transform scale-3`,
+                `relative inline-block w-24 m-2.5 border ${borderColor} rounded-2xl transform scale-3`,
                 ownerState.disabled ? 'cursor-not-allowed opacity-40' : 'cursor-pointer',
               ),
             }),
@@ -61,7 +61,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>((props, ref) => {
             }),
             track: (ownerState) => ({
               className: clsx(
-                `absolute block w-full h-full rounded-2xl ${
+                `absolute block w-24 h-full rounded-2xl ${
                   ownerState.checked 
                     ? onBgColor 
                     : offBgColor
