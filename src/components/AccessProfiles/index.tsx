@@ -14,7 +14,7 @@ const AccessProfiles: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="grid-cols-2">
       {/* <h1>Accessibility Profiles</h1> */}
       <CustomSwitch
         key={AccessProfileNames.SeizureSafeProfile}

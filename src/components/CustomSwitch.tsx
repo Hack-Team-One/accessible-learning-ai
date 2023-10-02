@@ -29,9 +29,10 @@ export default function CustomSwitch({ value, onChange, label }) {
   const isDarkMode = useIsDarkMode();
 
   return (
-    <div className={isDarkMode ? 'dark' : ''}>
-      <Switch slotProps={{ input: { ...ariaLabel } }} />
-      <h3 className="">{label}</h3>
+    <div className={"grid " + (isDarkMode ? 'dark' : '')} >
+      <hr className="col-span-2"></hr>
+      <Switch slotProps={{ input: { ...ariaLabel } }} className="col-start-1" />
+      <h3 className="col-start-2 mt-3">{label}</h3>
     </div>
   );
 }
@@ -41,52 +42,55 @@ export default function CustomSwitch({ value, onChange, label }) {
 
 const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>((props, ref) => {
   return (
-    <BaseSwitch
-      ref={ref}
-      {...props}
-      slotProps={{
-        ...props.slotProps,
-        root: (ownerState) => ({
-            className: clsx(
-              `relative inline-block w-24 h-8 m-2.5 border ${borderColor} rounded-2xl transform scale-3`,
-              ownerState.disabled ? 'cursor-not-allowed opacity-40' : 'cursor-pointer',
-            ),
-          }),
-          input: (ownerState) => ({
-            className: clsx(
-              'cursor-inherit absolute w-full h-full top-0 left-0 opacity-0 z-10 m-0',
-            ),
-          }),
-          track: (ownerState) => ({
-            className: clsx(
-              `absolute block w-full h-full rounded-2xl ${
-                ownerState.checked 
-                  ? onBgColor 
-                  : offBgColor
-                }`,
-            ),
-            children: (
-              <>
-                <span className={`absolute top-1 right-1 pr-2 text-${offTextColor}`}>OFF</span>
-                <span className={`absolute top-1 left-1 pl-2 text-${ownerState.checked ? onTextColor : offTextColor}`}>ON</span>
-              </>
-            )
-          }),
-          thumb: (ownerState) => ({
-            className: clsx(
-              `block w-12 h-7 top-0 ${
-                ownerState.checked ? 'ml-12' : 'left-0'
-              } rounded-2xl ${
-                ownerState.focusVisible
-                ? `${
-                ownerState.checked ? 'bg-white' : 'bg-slate-500'
-                } shadow-outline-switch`
-                : 'bg-white'
-              } relative transition-all`,
-            ),
-          }),
-      }}
-    />
+    <>
+      <BaseSwitch
+        ref={ref}
+        {...props}
+        slotProps={{
+          ...props.slotProps,
+          root: (ownerState) => ({
+              className: clsx(
+                `relative inline-block w-24 h-8 m-2.5 border ${borderColor} rounded-2xl transform scale-3`,
+                ownerState.disabled ? 'cursor-not-allowed opacity-40' : 'cursor-pointer',
+              ),
+            }),
+            input: (ownerState) => ({
+              className: clsx(
+                'cursor-inherit absolute w-full h-full top-0 left-0 opacity-0 z-10 m-0',
+              ),
+            }),
+            track: (ownerState) => ({
+              className: clsx(
+                `absolute block w-full h-full rounded-2xl ${
+                  ownerState.checked 
+                    ? onBgColor 
+                    : offBgColor
+                  }`,
+              ),
+              children: (
+                <>
+                  <span className={`absolute top-1 right-1 pr-2 text-${offTextColor}`}>OFF</span>
+                  <span className={`absolute top-1 left-1 pl-2 text-${ownerState.checked ? onTextColor : offTextColor}`}>ON</span>
+                </>
+              )
+            }),
+            thumb: (ownerState) => ({
+              className: clsx(
+                `block w-12 h-7 top-0 ${
+                  ownerState.checked ? 'ml-12' : 'left-0'
+                } rounded-2xl ${
+                  ownerState.focusVisible
+                  ? `${
+                  ownerState.checked ? 'bg-white' : 'bg-slate-500'
+                  } shadow-outline-switch`
+                  : 'bg-white'
+                } relative transition-all`,
+              ),
+            }),
+        }}
+      />
+      
+    </>
   );
 });
 
