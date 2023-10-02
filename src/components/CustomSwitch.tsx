@@ -67,8 +67,8 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>((props, ref) => {
             ),
             children: (
               <>
-                <span className={`absolute top-1 right-1 text-${offTextColor}`}>OFF</span>
-                <span className={`absolute top-1 left-1 text-${ownerState.checked ? onTextColor : offTextColor}`}>ON</span>
+                <span className={`absolute top-1 right-1 pr-2 text-${offTextColor}`}>OFF</span>
+                <span className={`absolute top-1 left-1 pl-2 text-${ownerState.checked ? onTextColor : offTextColor}`}>ON</span>
               </>
             )
           }),
