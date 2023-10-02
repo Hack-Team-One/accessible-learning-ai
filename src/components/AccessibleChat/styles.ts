@@ -31,18 +31,18 @@ export const FormContainer = styled.form<DynamicStylingProps>`
 export const ResponseDiv = styled.div`
   flex: 1;
   width: 100%;
-  border: 1px solid ${(props) => props.theme.palette.border.primary};
+  // border: 1px solid ${(props) => props.theme.palette.primary.main}; // May need to edit this
+  // border-radius: 0.375rem;
   overflow: auto;
   padding: 1rem;
-  border-radius: 0.375rem;
-  background-color: ${(props) => props.theme.palette.background.default};
+  background-color: ${(props) => props.theme.palette.custom.background.primary};
 `;
 
 export const MessageDiv = styled.div<DynamicStylingProps>`
   font-size: ${(props) => props?.fontSize?.text_base};
   line-height: ${(props) => props?.lineHeight?.text_base};
   color: ${(props) => (props.role === 'user' ? 'inherit' : props.theme.palette.text.primary)};
-  background-color: ${(props) => (props.role === 'user' ? 'transparent' : props.theme.palette.background.response)};
+  background-color: ${(props) => (props.role === 'user' ? 'transparent' : props.theme.palette.custom.background.secondary)};
 `;
 
 export const PromptDiv = styled.div<DynamicStylingProps>`
@@ -64,7 +64,7 @@ export const TextareaContainer = styled.div<DynamicStylingProps>`
 `;
 
 export const TextareaPrompt = styled(TextareaAutosize)<DynamicStylingProps>`
-  color: ${props => props?.textColor?.primary};
+  color: ${(props) => props.theme.palette.text.primary};
   width: 100%;
   resize: none;
   border: none;
@@ -82,7 +82,7 @@ export const TextareaPrompt = styled(TextareaAutosize)<DynamicStylingProps>`
 
 export const RegenerateButton = styled(MUIButton)<DynamicStylingProps>`
   color: ${(props) => props.theme.palette.text.primary};
-  background-color: ${(props) => props.theme.palette.background.buttonPrimary};
+  background-color: ${(props) => props.theme.palette.custom.background.buttonPrimary};
   border: 1px solid ${props => props?.borderColor?.primary};
   border-radius: 0.375rem;
   padding: 0.25rem;
@@ -93,8 +93,8 @@ export const RegenerateButton = styled(MUIButton)<DynamicStylingProps>`
 `;
 
 export const SendButton = styled(MUIButton)<DynamicStylingProps>`
-color: ${(props) => props.theme.palette.text.tertiary};
-  background-color: ${(props) => props.theme.palette.background.buttonSecondary};
+color: ${(props) => props.theme.palette.text.secondary};
+  background-color: ${(props) => props.theme.palette.custom.background.buttonSecondary};
   position: absolute;
   padding: 0.25rem;
   min-width: 7.5rem;

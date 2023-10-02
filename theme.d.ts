@@ -5,9 +5,12 @@ declare module '@mui/material/styles' {
     custom: {
       text: {
         tertiary: string;
+        titlePrimary?: string;
         titleSecondary: string;
       };
       background: {
+        primary: string,
+        secondary: string,
         tertiary: string;
         buttonPrimary: string;
         buttonSecondary: string;
@@ -24,9 +27,12 @@ declare module '@mui/material/styles' {
     custom?: {
       text?: {
         tertiary?: string;
+        titlePrimary?: string;
         titleSecondary?: string;
       };
       background?: {
+        primary?: string,
+        secondary?: string,
         tertiary?: string;
         buttonPrimary?: string;
         buttonSecondary?: string;

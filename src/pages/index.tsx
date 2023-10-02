@@ -6,12 +6,13 @@ import AccessibleChat from '../components/AccessibleChat';
 import { Button } from '@mui/base';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import useDynamicStyles from '../hooks/useDynamicStyling';
-import { useTheme } from '@mui/system';
+import ThemeProvider from '@mui/system/ThemeProvider';
+import { useDynamicTheme } from '../hooks/useDynamicTheme';
 
 const Home: React.FC = () => {
   const [openModal, setOpenModal] = React.useState<boolean>(false);
 
-  const theme = useTheme();
+  const theme = useDynamicTheme();
 
   const {
     textFont,
@@ -24,24 +25,26 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      <Head>
-        <title>Accessible Learning AI</title>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-      </Head>
-      <Header />
-      <AccessibleChat/>
-      <AccessControlsModal
-        open={openModal}
-        onClose={() => setOpenModal(false)}
-        slots={{ backdrop: Backdrop }}
-      />
-      <Button 
-        type="button" 
-        onClick={() => setOpenModal(true)} 
-        className="absolute bottom-3 right-3 hover:shadow-xl rounded-full border border-black w-12 h-12 md:w-14 md:h-14 z-[99999999]"
-      >
-        <AccessibilityNewIcon />
-      </Button>
+      <ThemeProvider theme={theme}>
+        <Head>
+          <title>Accessible Learning AI</title>
+          <meta name="viewport" content="initial-scale=1, width=device-width" />
+        </Head>
+        <Header />
+        <AccessibleChat/>
+        <AccessControlsModal
+          open={openModal}
+          onClose={() => setOpenModal(false)}
+          slots={{ backdrop: Backdrop }}
+        />
+        <Button 
+          type="button" 
+          onClick={() => setOpenModal(true)} 
+          className="absolute bottom-3 right-3 hover:shadow-xl rounded-full border border-black w-12 h-12 md:w-14 md:h-14 z-[99999999]"
+        >
+          <AccessibilityNewIcon />
+        </Button>
+      </ThemeProvider>
     </div>
   );
 };
