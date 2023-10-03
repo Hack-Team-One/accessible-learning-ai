@@ -76,7 +76,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>((props, ref) => {
             }),
             thumb: (ownerState) => ({
               className: clsx(
-                `block w-12 h-7 top-0 ${
+                `block w-12 h-8 top-0 ${
                   ownerState.checked ? 'ml-12' : 'left-0'
                 } rounded-2xl ${
                   ownerState.focusVisible
