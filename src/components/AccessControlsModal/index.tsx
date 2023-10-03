@@ -42,8 +42,6 @@ export default function AccessControlsModal({ open, onClose, slots}: ModalProps)
   const [lineHeight, setLineHeight] = useRecoilState<LineHeightStateType>(lineHeightState);
   const [letterSpacing, setLetterSpacing] = useRecoilState<LetterSpacingStateType>(letterSpacingState);
 
-  console.log('multiplier =', (fontSize.multiplier), 'text_base =', (fontSize.text_base), 'fontSize =', fontSize );
-
   return (
     <div>
       <StyledModal

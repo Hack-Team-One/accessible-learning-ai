@@ -6,6 +6,9 @@ import { DynamicStylingProps } from '../../hooks/useDynamicStyling';
 // Emotion styled components that accept dynamic values as props
 
 export const FormContainer = styled.form<DynamicStylingProps>`
+  font-size: ${(props) => props?.fontSize?.text_base}px;
+  line-height: ${(props) => props?.lineHeight?.text_base}px;
+  letter-spacing: ${(props) => props?.letterSpacing?.text_base}em;
   height: 100vh;
   width: 100%;
   display: flex;
@@ -33,16 +36,14 @@ export const ResponseDiv = styled.div`
   width: 100%;
   // border: 1px solid ${(props) => props.theme.palette.primary.main}; // May need to edit this
   // border-radius: 0.375rem;
-  overflow: auto;
-  padding: 1rem;
-  background-color: ${(props) => props.theme.palette.custom.background.primary};
+  overflow-y: auto;
+  // background-color: ${(props) => props.theme.palette.custom.background.primary};
 `;
 
 export const MessageDiv = styled.div<DynamicStylingProps>`
-  font-size: ${(props) => props?.fontSize?.text_base};
-  line-height: ${(props) => props?.lineHeight?.text_base};
   color: ${(props) => (props.role === 'user' ? 'inherit' : props.theme.palette.text.primary)};
   background-color: ${(props) => (props.role === 'user' ? 'transparent' : props.theme.palette.custom.background.secondary)};
+  margin-top: 20px;
 `;
 
 export const PromptDiv = styled.div<DynamicStylingProps>`
@@ -86,15 +87,16 @@ export const RegenerateButton = styled(MUIButton)<DynamicStylingProps>`
   border: 1px solid ${props => props?.borderColor?.primary};
   border-radius: 0.375rem;
   padding: 0.25rem;
+  margin: 1rem;
   position: relative;
-  right: 50%;
-  transform: translateX(50%);
+  float: right;
   z-index: 1;
 `;
 
 export const SendButton = styled(MUIButton)<DynamicStylingProps>`
-color: ${(props) => props.theme.palette.text.secondary};
-  background-color: ${(props) => props.theme.palette.custom.background.buttonSecondary};
+color: ${(props) => props.theme.palette.text.primary};
+  // background-color: ${(props) => props.theme.palette.custom.background.buttonPrimary};
+  background-color: '#007FFF';
   position: absolute;
   padding: 0.25rem;
   min-width: 7.5rem;

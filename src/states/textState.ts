@@ -92,21 +92,21 @@ export const lineHeightState = atom<LineHeightStateType>({
 
 export const defaultLetterSpacingState = {
   multiplier: 1,
-  text_xs: 0,
-  text_sm: 0,
-  text_base: 0,
-  text_lg: 0,
-  text_xl: 0,
-  text_2xl: 0,
-  text_3xl: 0,
-  text_4xl: 0,
-  text_5xl: 0,
-  text_6xl: 0,
-  text_7xl: 0,
-  text_8xl: 0,
-  text_9xl: 0,
-  titlePrimary: 0, // adjust these initial values to match figma design
-  titleSecondary: 0, // adjust these initial values to match figma design
+  text_xs: 0.01, // em
+  text_sm: 0.01, // em
+  text_base: 0.01, // em
+  text_lg: 0.02, // em
+  text_xl: 0.02, // em
+  text_2xl: 0.03, // em
+  text_3xl: 0.03, // em
+  text_4xl: 0.04, // em
+  text_5xl: 0.05, // em
+  text_6xl: 0.06, // em
+  text_7xl: 0.07, // em
+  text_8xl: 0.08, // em
+  text_9xl: 0.08, // em
+  titlePrimary: 0.03, // em (adjust based on design)
+  titleSecondary: 0.04, // em (adjust based on design)
 };
 export type LetterSpacingStateType = typeof defaultLetterSpacingState;
 
