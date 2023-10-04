@@ -22,16 +22,17 @@ const Home: React.FC = () => {
     letterSpacing,
   } = useDynamicStyles();
 
-
   return (
-    <div>
+    <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', height: '100vh' }}>
       <ThemeProvider theme={theme}>
-        {/* <Head>
+        <Head>
           <title>Accessible Learning AI</title>
-          <meta name="viewport" content="initial-scale=1, width=device-width" />
-        </Head> */}
-        <Header />
-        <AccessibleChat/>
+          <meta name="homepage with chaGPT user interface" content="initial-scale=1, width=device-width" />
+        </Head>
+        <div style={{ marginLeft: openModal ? '-20%' : '0' }}>
+          <Header />
+          <AccessibleChat />
+        </div>
         <AccessControlsModal
           open={openModal}
           onClose={() => setOpenModal(false)}
@@ -40,7 +41,7 @@ const Home: React.FC = () => {
         <Button 
           type="button" 
           onClick={() => setOpenModal(true)} 
-          className="absolute bottom-3 right-3 hover:shadow-xl rounded-full border border-black w-12 h-12 md:w-14 md:h-14 z-[99999999]"
+          className="absolute bottom-8 right-8 hover:shadow-xl rounded-full border border-black w-12 h-12 md:w-14 md:h-14 z-[99999999]"
         >
           <AccessibilityNewIcon style={{ fontSize: fontSize.text_4xl }} />
         </Button>
@@ -48,5 +49,6 @@ const Home: React.FC = () => {
     </div>
   );
 };
+
 
 export default Home;

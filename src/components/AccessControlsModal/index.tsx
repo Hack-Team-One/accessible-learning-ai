@@ -46,7 +46,22 @@ export default function AccessControlsModal({ open, onClose, slots}: ModalProps)
 
   return (
     <div>
-      <Dialog onClose={onClose} open={open} scroll="body">
+      <Dialog
+        onClose={onClose}
+        open={open}
+        scroll="body"
+        PaperProps={{
+          style: {
+            position: 'absolute',
+            right: 0,
+            top: 0,
+            height: '100vh',
+            overflowY: 'auto',
+            width: 450, // You can adjust this width as needed
+            margin: 0
+          }
+        }}
+      >
         <Box sx={style}>
           <DialogTitle className={`${fontSize.text_lg} text-center col-span-2`}>Accessibility Adjustments</DialogTitle>
           {/* <h2 id="accessibility-controls-modal" className={`${fontSize.text_lg} text-center col-span-2`}>Accessibility Adjustments</h2> */}
@@ -142,12 +157,15 @@ const grey = {
 const StyledModal = styled(Modal)`
   position: fixed;
   z-index: 1300;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end; // Aligns the modal to the right side
   overflow: scroll;
 `;
+
 
 const StyledBackdrop = styled(Backdrop)`
   z-index: -1;
@@ -159,6 +177,7 @@ const StyledBackdrop = styled(Backdrop)`
 
 const style = (theme: Theme) => ({
   width: 400,
+  height: '100vh',
   borderRadius: '12px',
   padding: '16px 32px 24px 32px',
   backgroundColor: theme.palette.mode === 'dark' ? '#0A1929' : 'white',
