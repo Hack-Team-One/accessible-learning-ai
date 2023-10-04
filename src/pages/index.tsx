@@ -42,7 +42,7 @@ const Home: React.FC = () => {
           onClick={() => setOpenModal(true)} 
           className="absolute bottom-3 right-3 hover:shadow-xl rounded-full border border-black w-12 h-12 md:w-14 md:h-14 z-[99999999]"
         >
-          <AccessibilityNewIcon />
+          <AccessibilityNewIcon style={{ fontSize: fontSize.text_4xl }} />
         </Button>
       </ThemeProvider>
     </div>

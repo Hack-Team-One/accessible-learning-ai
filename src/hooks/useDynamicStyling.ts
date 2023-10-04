@@ -10,6 +10,7 @@ import {
   LineHeightStateType,
   letterSpacingState,
   LetterSpacingStateType,
+  defaultFontSizeState,
  } from "../states/textState";
 
  export type DynamicStylingProps = {
@@ -20,10 +21,10 @@ import {
   letterSpacing?: LetterSpacingStateType,
 }
 
- const useDynamicCSS = (): DynamicStylingProps => {
+ const useDynamicCSS = () => {
    const textFont = useRecoilValue<TextFontStateType>(textFontState);
    const contentScaling = useRecoilValue<ContentScalingStateType>(contentScalingState);
-   const fontSize = useRecoilValue<FontSizeStateType>(fontSizeState);
+   const fontSize = useRecoilValue<FontSizeStateType>(fontSizeState) || defaultFontSizeState;
    const lineHeight = useRecoilValue<LineHeightStateType>(lineHeightState);
    const letterSpacing = useRecoilValue<LetterSpacingStateType>(letterSpacingState);
  
