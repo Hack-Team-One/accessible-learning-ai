@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { Button as MUIButton, TextareaAutosize } from '@mui/base';
 import { sendMessageToChatGPT, CHATGPT_MODEL } from '../../utils';
 import SendIcon from '@mui/icons-material/Send';
 import LoopIcon from '@mui/icons-material/Loop';
 import { Message } from '../../types';
-import styled from '@emotion/styled';
-import { css } from '@emotion/react';
-import useDynamicStyling from '../../hooks/useDynamicStyling';
 import { validateMessages } from '../../utils/validation';
 import {
   FormContainer,
@@ -20,6 +16,8 @@ import {
   SendButton,
   InfoText,
 } from './styles';
+import useDynamicStyling from '../../hooks/useDynamicStyling';
+import { useTheme } from '@mui/system';
 
 const AccessibleChat: React.FC = () => {
   const [userInput, setUserInput] = useState('');
@@ -33,23 +31,28 @@ const AccessibleChat: React.FC = () => {
     letterSpacing,
   } = useDynamicStyling();
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>, includeUserInput: boolean = true) => {
+  const theme = useTheme();
+
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>,
+    updatedMessages: Message[],
+    includeUserInput: boolean = true
+  ) => {
     e.preventDefault();
     
-    let newMessages = [...messages];
     if (includeUserInput) {
-      newMessages.push({ role: 'user', content: userInput });
+      updatedMessages.push({ role: 'user', content: userInput });
     }
 
-    validateMessages(newMessages);
+    validateMessages(updatedMessages);
   
     try {
-      const response = await sendMessageToChatGPT(newMessages);
+      const response = await sendMessageToChatGPT(updatedMessages);
       if (response) {
-        setMessages([...newMessages, { role: 'system', content: response }]);
+        setMessages([...updatedMessages, { role: 'system', content: response }]);
         setUserInput('');
       } else {
-        setMessages([...newMessages, { role: 'system', content: 'Something went wrong. Please try again.' }]);
+        setMessages([...updatedMessages, { role: 'system', content: 'Something went wrong. Please try again.' }]);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -59,31 +62,27 @@ const AccessibleChat: React.FC = () => {
   const handleRegenerate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
 
-    const updatedMessages: Message[] = messages.slice(0, -2); // Remove last response
+    const updatedMessages: Message[] = messages.slice(0, -1); // Remove last response
+
     setMessages(updatedMessages);
 
-    handleSubmit(e as any, false);
+    handleSubmit(e as any, updatedMessages, false);
   };
 
-  console.log('ACCESS CHAT FONTSIZE = ', fontSize)
-
   return (
-    <FormContainer 
+    <FormContainer
       textFont={textFont}
       contentScaling={contentScaling}
       fontSize={fontSize}
       lineHeight={lineHeight}
       letterSpacing={letterSpacing}
-      onSubmit={handleSubmit}
+      onSubmit={(e) => handleSubmit(e, messages)}
     >
       <ResponseDiv id="responseDiv" >
         {messages.map((message, index) => (
           <MessageDiv 
             key={index} 
             role={message.role}
-            fontSize={fontSize}
-            lineHeight={lineHeight}
-            letterSpacing={letterSpacing}
           >
             {message.content}
           </MessageDiv>

@@ -35,8 +35,6 @@ function AccessSizeControl({
       }
     });
 
-    console.log('updatedFontSize =', updatedFontSize)
-
 
     setState(Object.assign({...state}, updatedFontSize));
   };

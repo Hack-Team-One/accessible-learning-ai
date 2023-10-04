@@ -1,11 +1,11 @@
 import { atom } from 'recoil';
 
 export const defaultTextColorState = {
-  primary: 'black',
-  secondary: 'blue',
-  tertiary: 'white',
-  titlePrimary: 'black',
-  titleSecondary: 'blue',
+  primary: '#000000', // black
+  secondary: '#FFFFFF', // white
+  tertiary: '#0000FF', // blue
+  titlePrimary: '#000000', // black
+  titleSecondary: '#0000FF', // blue
 };
 export type TextColorStateType = typeof defaultTextColorState;
 
@@ -15,12 +15,12 @@ export const textColorState = atom<TextColorStateType>({
 });
 
 export const defaultBgColorState = {
-  primary: 'white',
-  secondary: 'blue-900',
-  tertiary: 'gray-100',
-  response: 'gray-300',
-  buttonPrimary: 'blue-500',
-  buttonSecondary: 'purple',
+  primary: '#FFFFFF', // white
+  secondary: '#E5E4E2', // platinum gray 	rgb(229, 228, 226)
+  tertiary: '#0000FF', // blue
+  response: '#D3D3D3', // light gray rgb(211, 211, 211)
+  buttonPrimary: '#0000FF', // blue
+  buttonSecondary: '#BF40BF', // Bright Purple rgb(191, 64, 191)
 };
 export type BgColorStateType = typeof defaultBgColorState;
 
@@ -30,9 +30,9 @@ export const bgColorState = atom<BgColorStateType>({
 });
 
 export const defaultBorderColorState = {
-  primary: 'black',
-  secondary: 'blue',
-  tertiary: 'gray',
+  primary: '#000000', // black
+  secondary: '#0000FF', // blue
+  tertiary: '#808080', // gray rgb(128, 128, 128)
 };
 export type BorderColorStateType = typeof defaultBorderColorState;
 
