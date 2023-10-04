@@ -18,10 +18,12 @@ import {
 } from './styles';
 import useDynamicStyling from '../../hooks/useDynamicStyling';
 import { useTheme } from '@mui/system';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const AccessibleChat: React.FC = () => {
   const [userInput, setUserInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([]); // Maintains conversation history
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     textFont,
@@ -39,6 +41,8 @@ const AccessibleChat: React.FC = () => {
     includeUserInput: boolean = true
   ) => {
     e.preventDefault();
+
+    setIsLoading(true);
     
     if (includeUserInput) {
       updatedMessages.push({ role: 'user', content: userInput });
@@ -48,6 +52,7 @@ const AccessibleChat: React.FC = () => {
   
     try {
       const response = await sendMessageToChatGPT(updatedMessages);
+      setIsLoading(false);
       if (response) {
         setMessages([...updatedMessages, { role: 'system', content: response }]);
         setUserInput('');
@@ -55,6 +60,7 @@ const AccessibleChat: React.FC = () => {
         setMessages([...updatedMessages, { role: 'system', content: 'Something went wrong. Please try again.' }]);
       }
     } catch (error) {
+      setIsLoading(false);
       console.error('Error:', error);
     }
   };  
@@ -90,7 +96,7 @@ const AccessibleChat: React.FC = () => {
             {message.content}
           </MessageDiv>
         ))}
-        {messages.length > 0 && (
+        {messages.length > 0 && !isLoading && (
           <RegenerateButton
             disabled={messages.length < 1}
             onClick={handleRegenerate}
@@ -98,6 +104,7 @@ const AccessibleChat: React.FC = () => {
             <LoopIcon /> Regenerate
           </RegenerateButton>
         )}
+        {isLoading && <CircularProgress style={{ marginLeft: '50%', marginRight: '50%' }}/>}
       </ResponseDiv>
       <PromptDiv id="promptDiv">
         <TextareaContainer>

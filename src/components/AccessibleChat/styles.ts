@@ -9,7 +9,7 @@ export const FormContainer = styled.form<DynamicStylingProps>`
   font-size: ${(props) => props?.fontSize?.text_base}px;
   line-height: ${(props) => props?.lineHeight?.text_base}px;
   letter-spacing: ${(props) => props?.letterSpacing?.text_base}em;
-  height: 100vh;
+  height: calc(100vh - ${(props) => props?.lineHeight?.text_7xl}px);
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -100,12 +100,12 @@ export const RegenerateButton = styled(MUIButton)<DynamicStylingProps>`
 //  background-color: ${(props) => props.theme.palette.background.buttonSecondary};
 export const SendButton = styled(MUIButton)<DynamicStylingProps>`
 color: ${(props) => props.theme.palette.text.primary};
-  // background-color: ${(props) => props.theme.palette.custom.background.buttonPrimary};
-  background-color: '#007FFF';
+  background-color: ${(props) => props.theme.palette.custom.background.buttonSecondary};
+  // background-color: '#007FFF';
   position: absolute;
   padding: 0.25rem;
   min-width: 7.5rem;
-  bottom: 0.75rem;
+  bottom: 0.4rem;
   right: 0.75rem;
   z-index: 1;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
@@ -117,5 +117,5 @@ color: ${(props) => props.theme.palette.text.primary};
 export const InfoText = styled.p<DynamicStylingProps>`
   font-size: ${props => props?.fontSize?.text_xs}px;
   color: rgba(107, 114, 128, 1);
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 `;
