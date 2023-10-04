@@ -1,19 +1,5 @@
 import { atom } from 'recoil';
-import { FontNames } from '@/utils/enums';
-
-export const defaultTextFontState = { 
-  primary: FontNames.Arial,
-  secondary: FontNames.Arial,
-  tertiary: FontNames.Arial,
-  titlePrimary: FontNames.Arial,
-  titleSecondary: FontNames.Arial,
-};
-export type TextFontStateType = typeof defaultTextFontState;
-
-export const textFontState = atom<TextFontStateType>({
-  key: 'textFontState',
-  default: {...defaultTextFontState},
-});
+import { FontNames } from '../utils/enums';
 
 export const defaultContentScalingState = {
   multiplier: 1,
@@ -40,8 +26,21 @@ export const contentScalingState = atom<ContentScalingStateType>({
   default: {...defaultContentScalingState},
 });
 
+const defaultFontState = { 
+  primary: FontNames.Arial,
+  secondary: FontNames.Arial,
+  tertiary: FontNames.Arial,
+  titlePrimary: FontNames.Arial,
+  titleSecondary: FontNames.Arial,
+};
+export type FontStateType = typeof defaultFontState;
+
+export const textFontState = atom<FontStateType>({
+  key: 'textFontState',
+  default: {...defaultFontState},
+});
+
 export const defaultFontSizeState = {
-  multiplier: 1,
   text_xs: 12,
   text_sm: 14,
   text_base: 16, // WCAG 2.1 recommended font size for body text

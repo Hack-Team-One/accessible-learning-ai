@@ -64,3 +64,12 @@ body {
     @apply text-left p-4
   }
 }
+
+@layer base {
+  h1 {
+    @apply flex justify-center text-5xl font-semibold;
+  }
+  button-centered {
+    @apply whitespace-nowrap flex justify-center items-center;
+  }
+}
