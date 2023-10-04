@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input } from '@mui/base';
 
-interface TextInputProps {
+type TextInputProps = {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
