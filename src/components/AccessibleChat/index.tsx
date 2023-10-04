@@ -69,6 +69,8 @@ const AccessibleChat: React.FC = () => {
     handleSubmit(e as any, updatedMessages, false);
   };
 
+  console.log('foneSize >>>', fontSize);
+
   return (
     <FormContainer
       textFont={textFont}
@@ -83,6 +85,7 @@ const AccessibleChat: React.FC = () => {
           <MessageDiv 
             key={index} 
             role={message.role}
+            fontSize={fontSize}
           >
             {message.content}
           </MessageDiv>

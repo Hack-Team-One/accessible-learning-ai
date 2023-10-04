@@ -43,6 +43,7 @@ export const ResponseDiv = styled.div`
 `;
 
 export const MessageDiv = styled.div<DynamicStylingProps>`
+  font-size: ${(props) => props?.fontSize?.text_base}px;
   color: ${(props) => (props.role === 'user' ? 'inherit' : props.theme.palette.text.primary)};
   background-color: ${(props) => (props.role === 'user' ? 'transparent' : props.theme.palette.custom.background.secondary)};
   margin-top: 20px;

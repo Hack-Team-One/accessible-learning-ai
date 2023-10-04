@@ -21,6 +21,11 @@ function AccessSizeControl({
   state,
   setState,
 }: AccessSizeControlProps) {
+  let sizeValue = text;
+
+  if (state.multiplier !== 1) {
+    sizeValue = `${state.multiplier > 1 ? '+' : ''}${Math.round(state.multiplier * 100 - 100)}%`;
+  }
 
   const handleUpdateValue = (newValue: number) => {
     const fontSizeKeys: string[] = Object.keys(state)
@@ -54,7 +59,7 @@ function AccessSizeControl({
         </Button>
       </div>
       <div className="bg-white mb-5">
-        <p className="text-blue-500 text-center text-sm ">{text}</p>
+        <p className="text-blue-500 text-center text-sm ">{sizeValue}</p>
       </div>
       <div className="relative">
         <Button

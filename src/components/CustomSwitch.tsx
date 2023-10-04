@@ -1,14 +1,13 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { Switch as BaseSwitch, SwitchProps } from '@mui/base/Switch';
-import { useTheme } from '@mui/system';
 import useIsDarkMode from '../hooks/useIsDarkMode';
 
-// type CustomSwitchProps = {
-//   value: boolean;
-//   onChange: (newValue: boolean) => void;
-//   label: string;
-// }
+type CustomSwitchProps = {
+  value: boolean;
+  onChange: (newValue: boolean) => void;
+  label: string;
+}
 
 const offBgColor = 'bg-slate-100';
 const onBgColor = 'bg-blue-500';
@@ -17,12 +16,7 @@ const onTextColor = 'white';
 const borderColor = 'border-slate-400';
 const offSideColor = 'gray';
 
-// function useIsDarkMode() {
-//   const theme = useTheme();
-//   return theme.palette.mode === 'dark';
-// }
-
-export default function CustomSwitch({ value, onChange, label }) {
+export default function CustomSwitch({ value, onChange, label }: CustomSwitchProps) {
   const ariaLabel = { 'aria-label': 'Demo switch' };
 
   // Replace this with your app logic for determining dark modes
@@ -94,6 +88,8 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>((props, ref) => {
   );
 });
 
+Switch.displayName = 'Switch';
+
 
 // const CustomSwitch: React.FC<CustomSwitchProps> = ({ value, onChange, label }) => {
 //   const handleToggle = () => {
@@ -152,4 +148,4 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>((props, ref) => {
 //   );
 // });
 
-// Switch.displayName = 'Switch';
+

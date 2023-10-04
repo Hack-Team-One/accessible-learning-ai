@@ -26,10 +26,10 @@ const Home: React.FC = () => {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Head>
+        {/* <Head>
           <title>Accessible Learning AI</title>
           <meta name="viewport" content="initial-scale=1, width=device-width" />
-        </Head>
+        </Head> */}
         <Header />
         <AccessibleChat/>
         <AccessControlsModal
