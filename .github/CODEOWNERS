@@ -1,0 +1,6 @@
+# Each line is a file pattern followed by one or more owners.
+# Order is important; the last matching pattern takes the most
+
+* @burtrico @ajs-amandasmith
+.github/workflows    @burtrico
+.github/CODEOWNERS    @burtrico

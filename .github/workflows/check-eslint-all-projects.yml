@@ -1,0 +1,27 @@
+# This workflow checks eslint in all projects using a reusable workflow.
+
+name: Check eslint
+
+on:
+  push:
+    branches:
+      - main
+      - release/*
+      - instance/*
+  pull_request:
+    branches:
+      - main
+      - release/*
+      - instance/*
+
+jobs:
+  # check-backend:
+  #   name: backend
+  #   uses: Hack-Team-One/accessible-learning-ai/.github/workflows/check-eslint.yml@main
+  #   with:
+  #     project: backend
+  check-frontend:
+    name: frontend
+    uses: Hack-Team-One/accessible-learning-ai/.github/workflows/check-eslint.yml@main
+    with:
+      project: frontend

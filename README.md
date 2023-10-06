@@ -7,10 +7,10 @@ Accessibility Enhanced Learning with AI
 
 2. Clone this repository
 
-3. Navigate into the project directory
+3. Navigate into the frontend project directory
 
    ```bash
-   $ cd accessible-learning-ai
+   $ cd accessible-learning-ai/frontend
    ```
 
 4. Install the requirements
