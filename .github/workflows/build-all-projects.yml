@@ -1,0 +1,27 @@
+# This workflow builds all the NodeJS projects using a reusable build workflow.
+
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+      - release/*
+      - instance/*
+  pull_request:
+    branches:
+      - main
+      - release/*
+      - instance/*
+
+jobs:
+#   build-backend:
+#     name: backend
+#     uses: Hack-Team-One/accessible-learning-ai/.github/workflows/build-project.yml@main
+#     with:
+#       project: backend
+  build-frontend:
+    name: frontend
+    uses: Hack-Team-One/accessible-learning-ai/.github/workflows/build-project.yml@main
+    with:
+      project: frontend

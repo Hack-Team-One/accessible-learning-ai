@@ -1,0 +1,48 @@
+# This workflow checks if running `npm run lint` causes no source code file changes.
+
+name: Check eslint in project
+
+on:
+  workflow_call:
+    inputs:
+      project:
+        required: true
+        type: string
+
+jobs:
+  check:
+    name: Check eslint in `${{ inputs.project }}`
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.17.1]
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: ${{ inputs.project }}/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ${{ inputs.project }}
+
+      - name: Reset any file changes created by npm ci
+        run: |
+          git --no-pager diff
+          git reset --hard HEAD
+
+      - name: Run eslint
+        run: npm run lint || true
+        working-directory: ${{ inputs.project }}
+
+      - name: Fail if eslint made any changes
+        run: |
+          git --no-pager diff
+          [[ -z $(git status --untracked-files=no --porcelain) ]] && echo "running eslint made no changes"
