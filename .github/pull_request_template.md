@@ -1,5 +1,5 @@
-## JIRA
-[Post a link to the corresponding JIRA ticket]
+## Ticket
+[Post a link to the corresponding ticket]
 
 
 

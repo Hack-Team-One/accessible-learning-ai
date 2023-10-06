@@ -25,6 +25,12 @@ const AccessibleChat: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  // TODO: Add "Loading ..." text for when loading is true
+  // Space out paragraphs within the reponse
+  // Make code appear differently and have copy feature
+  // Check if lineHeight is being adjusted accurately
+  // Check if downsizing is working properly
+
   const {
     textFont,
     contentScaling,
