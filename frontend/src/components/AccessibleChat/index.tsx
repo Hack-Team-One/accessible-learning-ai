@@ -22,7 +22,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 const AccessibleChat: React.FC = () => {
   const [userInput, setUserInput] = useState('');
-  const [messages, setMessages] = useState<Message[]>([]); // Maintains conversation history
+  const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const {
