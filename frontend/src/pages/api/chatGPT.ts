@@ -3,24 +3,25 @@ import OpenAI from 'openai';
 import { countAllTokens } from '../../utils';
 import { Message } from '../../types';
 
-export const CHATGPT_MODEL: string = process.env.NEXT_PUBLIC_CHATGPT_MODEL || 'gpt-3.5-turbo';
-export const MAX_TOKEN_LIMIT: number = parseInt(process.env.NEXT_PUBLIC_CHATGPT_MAX_TOKEN_LIMIT || '150');
-const API_KEY: string | undefined = process.env.NEXT_PUBLIC_OPENAI_API_KEY; // keep this private
-
-const openai = new OpenAI({
-  apiKey: API_KEY,
-  dangerouslyAllowBrowser: true,
-});
+type ChatGPTProps = {
+  messages: Message[];
+  CHATGPT_MODEL: string;
+  MAX_TOKEN_LIMIT: number;
+};
 
 export default async function chatGPT (req: NextApiRequest, res: NextApiResponse) {
+  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const { 
+    messages,
+    CHATGPT_MODEL,
+    MAX_TOKEN_LIMIT,
+  }: ChatGPTProps = req.body;
+
   if (req.method !== 'POST') {
     return res.status(405).end();
   }
 
-  const { messages }: { messages: Message[] } = req.body;
-
   const totalTokens: number = await countAllTokens(messages);
-  console.log('totalTokens:', totalTokens)
 
   if (totalTokens > MAX_TOKEN_LIMIT) {
     return res.status(400).json({ error: 'Token limit exceeded' });

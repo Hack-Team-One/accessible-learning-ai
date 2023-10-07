@@ -1,4 +1,4 @@
 export type Message = {
-    role: 'user' | 'system';
-    content: string;
-  }
+  role: 'user' | 'system';
+  content: string;
+}

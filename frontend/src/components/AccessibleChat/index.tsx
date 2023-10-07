@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useRecoilValue } from 'recoil';
 import { sendMessageToChatGPT, CHATGPT_MODEL } from '../../utils';
 import SendIcon from '@mui/icons-material/Send';
 import LoopIcon from '@mui/icons-material/Loop';
@@ -31,6 +30,7 @@ const AccessibleChat: React.FC = () => {
   // Check if lineHeight is being adjusted accurately
   // Check if downsizing is working properly
   // Check why letter spacing is off
+  // Test github actions
 
   const {
     textFont,
@@ -81,8 +81,6 @@ const AccessibleChat: React.FC = () => {
 
     handleSubmit(e as any, updatedMessages, false);
   };
-
-  console.log('foneSize >>>', fontSize);
 
   return (
     <FormContainer
