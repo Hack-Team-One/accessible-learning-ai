@@ -45,9 +45,10 @@ jobs:
 
       - name: Build the project
         run: npm run build
-        # env:
-        #   APP_ENV: test
-        #   NODE_OPTIONS: '--max_old_space_size=4096'
+        env:
+          NODE_ENV: test
+          # NODE_OPTIONS: '--max_old_space_size=4096' // Used to increase the memory limit
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         working-directory: ${{ inputs.project }}
 
       # - name: Test the project
