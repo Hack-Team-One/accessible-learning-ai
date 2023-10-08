@@ -30,7 +30,6 @@ const AccessibleChat: React.FC = () => {
   // Check if lineHeight is being adjusted accurately
   // Check if downsizing is working properly
   // Check why letter spacing is off
-  // Test github actions
 
   const {
     textFont,
