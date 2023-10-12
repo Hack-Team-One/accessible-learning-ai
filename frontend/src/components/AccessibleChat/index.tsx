@@ -109,7 +109,20 @@ const AccessibleChat: React.FC = () => {
             <LoopIcon /> Regenerate
           </RegenerateButton>
         )}
-        {isLoading && <CircularProgress style={{ marginLeft: '50%', marginRight: '50%' }}/>}
+        {isLoading && (
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: `${fontSize.text_xl}px`}}
+          >
+            <br />
+            <p>Loading...</p>
+            <br />
+            <CircularProgress />
+          </div>
+        )}
       </ResponseDiv>
       <PromptDiv id="promptDiv">
         <TextareaContainer>
