@@ -14,6 +14,7 @@ import {
   TextareaPrompt,
   SendButton,
   InfoText,
+  LoadingAnimation,
 } from './styles';
 import useDynamicStyling from '../../hooks/useDynamicStyling';
 import { useTheme } from '@mui/system';
@@ -137,7 +138,7 @@ const AccessibleChat: React.FC = () => {
             disabled={userInput.trim().length < 2}
             type="submit"
           >
-            <SendIcon />
+            {isLoading ? <LoadingAnimation fontSize={fontSize} /> : <SendIcon />}
           </SendButton>
         </TextareaContainer>
       </PromptDiv>
