@@ -42,12 +42,34 @@ export const ResponseDiv = styled.div`
   // background-color: ${(props) => props.theme.palette.custom.background.primary};
 `;
 
+// export const MessageDiv = styled.div<DynamicStylingProps>`
+//   font-size: ${(props) => props?.fontSize?.text_base}px;
+//   color: ${(props) => (props.role === 'user' ? 'inherit' : props.theme.palette.text.primary)};
+//   background-color: ${(props) => (props.role === 'user' ? 'transparent' : props.theme.palette.custom.background.secondary)};
+//   margin-top: 20px;
+// `;
+
 export const MessageDiv = styled.div<DynamicStylingProps>`
-  font-size: ${(props) => props?.fontSize?.text_base}px;
-  color: ${(props) => (props.role === 'user' ? 'inherit' : props.theme.palette.text.primary)};
-  background-color: ${(props) => (props.role === 'user' ? 'transparent' : props.theme.palette.custom.background.secondary)};
-  margin-top: 20px;
+  ...
+  background-color: ${(props) => 
+    props.role === 'user' || !props.content?.startsWith('```') || !props.content.endsWith('```')
+      ? 'transparent'
+      : 'black' // black for code block
+  };
+  color: ${(props) => 
+    props.role === 'user' || !props.content?.startsWith('```') || !props.content.endsWith('```')
+      ? 'inherit'
+      : 'white' // white text for code block
+  };
+  padding: ${(props) => 
+    !props.content?.startsWith('```') || !props.content.endsWith('```')
+      ? '0'
+      : '1em' // padding for code block
+  };
+  border-radius: 5px; // round the corners for aesthetic
+  ...
 `;
+
 
 export const PromptDiv = styled.div<DynamicStylingProps>`
   display: flex;
@@ -121,15 +143,7 @@ export const InfoText = styled.p<DynamicStylingProps>`
 export const LoadingAnimation = styled.div<DynamicStylingProps>`
   color: ${(props) => props.theme.palette.text.primary};
   font-size: ${props => props?.fontSize?.text_xl}px;
-  position: relative;
-
-  &::before {
-    content: "";
-    display: inline-block;
-    width: 1em; /* Adjust the width as needed */
-    text-align: center;
-    animation: loading 1.5s infinite;
-  }
+  animation: loading 1.5s infinite;
 
   @keyframes loading {
     0% {
@@ -146,5 +160,4 @@ export const LoadingAnimation = styled.div<DynamicStylingProps>`
     }
   }
 `;
-
 

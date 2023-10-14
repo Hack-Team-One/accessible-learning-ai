@@ -83,6 +83,15 @@ const AccessibleChat: React.FC = () => {
     handleSubmit(e as any, updatedMessages, false);
   };
 
+  function copyToClipboard(text: string) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+  }  
+
   return (
     <FormContainer
       textFont={textFont}
@@ -98,10 +107,14 @@ const AccessibleChat: React.FC = () => {
             key={index} 
             role={message.role}
             fontSize={fontSize}
+            content={message.content}
           >
             {message.content.split('\n').map((line, idx) => (
               <p key={idx} style={{ margin: "0.5em 0" }}>{line}</p>
             ))}
+            {message.content.startsWith('```') && message.content.endsWith('```') && (
+              <button onClick={() => copyToClipboard(message.content.slice(3, -3))}>Copy</button>
+            )}
           </MessageDiv>
         ))}
         {messages.length > 0 && !isLoading && (
