@@ -99,7 +99,9 @@ const AccessibleChat: React.FC = () => {
             role={message.role}
             fontSize={fontSize}
           >
-            {message.content}
+            {message.content.split('\n').map((line, idx) => (
+              <p key={idx} style={{ margin: "0.5em 0" }}>{line}</p>
+            ))}
           </MessageDiv>
         ))}
         {messages.length > 0 && !isLoading && (
