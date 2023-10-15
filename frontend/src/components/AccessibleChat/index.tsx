@@ -15,6 +15,8 @@ import {
   SendButton,
   InfoText,
   LoadingAnimation,
+  CodeDiv,
+  CodeDivHeader,
 } from './styles';
 import useDynamicStyling from '../../hooks/useDynamicStyling';
 import { useTheme } from '@mui/system';
@@ -90,7 +92,15 @@ const AccessibleChat: React.FC = () => {
     textArea.select();
     document.execCommand('copy');
     document.body.removeChild(textArea);
-  }  
+  } 
+
+  function findCodeType(text: string) {
+    const codeTypeAbbreviation = text.slice(3, 6);
+    if (codeTypeAbbreviation === 'jsx') return 'JavaScript';
+    if (codeTypeAbbreviation === 'tsx') return 'TypeScript';
+    if (codeTypeAbbreviation === 'css') return 'CSS';
+    return '';
+  }
 
   return (
     <FormContainer
@@ -110,11 +120,17 @@ const AccessibleChat: React.FC = () => {
             content={message.content}
           >
             {message.content.split('\n').map((line, idx) => (
+              message.content.startsWith('```') && message.content.endsWith('```') ? 
+              <CodeDiv key={idx} content={message.content}>
+                <CodeDivHeader>
+                  <p>{findCodeType(message.content)}</p>
+                  <button onClick={() => copyToClipboard(line.slice(6, -3))}>Copy to Clipboard</button>
+                </CodeDivHeader>
+                <p key={idx} style={{ margin: "0.5em 0" }}>{line}</p>
+              </CodeDiv>
+              :
               <p key={idx} style={{ margin: "0.5em 0" }}>{line}</p>
             ))}
-            {message.content.startsWith('```') && message.content.endsWith('```') && (
-              <button onClick={() => copyToClipboard(message.content.slice(3, -3))}>Copy</button>
-            )}
           </MessageDiv>
         ))}
         {messages.length > 0 && !isLoading && (

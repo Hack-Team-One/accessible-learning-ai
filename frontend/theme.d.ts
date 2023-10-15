@@ -7,11 +7,14 @@ declare module '@mui/material/styles' {
         tertiary: string;
         titlePrimary?: string;
         titleSecondary: string;
+        code: string;
+        css: string;
       };
       background: {
         primary: string,
         secondary: string,
         tertiary: string;
+        code: string;
         buttonPrimary: string;
         buttonSecondary: string;
       };
@@ -29,11 +32,14 @@ declare module '@mui/material/styles' {
         tertiary?: string;
         titlePrimary?: string;
         titleSecondary?: string;
+        code?: string;
+        css?: string;
       };
       background?: {
         primary?: string,
         secondary?: string,
         tertiary?: string;
+        code?: string;
         buttonPrimary?: string;
         buttonSecondary?: string;
       };

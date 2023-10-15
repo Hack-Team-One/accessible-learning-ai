@@ -42,34 +42,28 @@ export const ResponseDiv = styled.div`
   // background-color: ${(props) => props.theme.palette.custom.background.primary};
 `;
 
-// export const MessageDiv = styled.div<DynamicStylingProps>`
-//   font-size: ${(props) => props?.fontSize?.text_base}px;
-//   color: ${(props) => (props.role === 'user' ? 'inherit' : props.theme.palette.text.primary)};
-//   background-color: ${(props) => (props.role === 'user' ? 'transparent' : props.theme.palette.custom.background.secondary)};
-//   margin-top: 20px;
-// `;
-
 export const MessageDiv = styled.div<DynamicStylingProps>`
-  ...
-  background-color: ${(props) => 
-    props.role === 'user' || !props.content?.startsWith('```') || !props.content.endsWith('```')
-      ? 'transparent'
-      : 'black' // black for code block
-  };
-  color: ${(props) => 
-    props.role === 'user' || !props.content?.startsWith('```') || !props.content.endsWith('```')
-      ? 'inherit'
-      : 'white' // white text for code block
-  };
-  padding: ${(props) => 
-    !props.content?.startsWith('```') || !props.content.endsWith('```')
-      ? '0'
-      : '1em' // padding for code block
-  };
-  border-radius: 5px; // round the corners for aesthetic
-  ...
+  font-size: ${(props) => props?.fontSize?.text_base}px;
+  color: ${(props) => (props.role === 'user' ? 'inherit' : props.theme.palette.text.primary)};
+  background-color: ${(props) => (props.role === 'user' ? 'transparent' : props.theme.palette.custom.background.secondary)};
+  margin-top: 20px;
 `;
 
+export const CodeDiv = styled.div<DynamicStylingProps>`
+  background-color: ${(props) => (props.role === 'user' ? 'transparent' : props.theme.palette.custom.background.code)};
+  color: ${(props) => 
+    props.content?.slice(3, 6)} === 'css'
+      ? ${(props => props.theme.palette.custom.text.css)}
+      : ${(props => props.theme.palette.custom.text.code)}
+  };
+  padding: '1em';
+`;
+
+export const CodeDivHeader = styled.div<DynamicStylingProps>`
+  display: flex;
+  flexDirection: row;
+  background-color: '#808080'; // gray
+`;
 
 export const PromptDiv = styled.div<DynamicStylingProps>`
   display: flex;

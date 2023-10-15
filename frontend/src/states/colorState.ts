@@ -4,6 +4,8 @@ export const defaultTextColorState = {
   primary: '#000000', // black
   secondary: '#FFFFFF', // white
   tertiary: '#0000FF', // blue
+  code: '#FFFFFF', // white
+  css:  '#FFA500', // orange
   titlePrimary: '#000000', // black
   titleSecondary: '#0000FF', // blue
 };
@@ -19,6 +21,7 @@ export const defaultBgColorState = {
   secondary: '#E5E4E2', // platinum gray 	rgb(229, 228, 226)
   tertiary: '#0000FF', // blue
   response: '#D3D3D3', // light gray rgb(211, 211, 211)
+  code: '#000000', // black
   buttonPrimary: '#0000FF', // blue
   buttonSecondary: '#BF40BF', // Bright Purple rgb(191, 64, 191)
 };
