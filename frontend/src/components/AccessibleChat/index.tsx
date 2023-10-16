@@ -21,6 +21,7 @@ import {
 import useDynamicStyling from '../../hooks/useDynamicStyling';
 import { useTheme } from '@mui/system';
 import CircularProgress from '@mui/material/CircularProgress';
+import ContentPasteIcon from '@mui/icons-material/ContentPaste';
 
 const AccessibleChat: React.FC = () => {
   const [userInput, setUserInput] = useState('');
@@ -124,7 +125,10 @@ const AccessibleChat: React.FC = () => {
               <CodeDiv key={idx} content={message.content}>
                 <CodeDivHeader>
                   <p>{findCodeType(message.content)}</p>
-                  <button onClick={() => copyToClipboard(line.slice(6, -3))}>Copy to Clipboard</button>
+                  <button onClick={() => copyToClipboard(line.slice(6, -3))}>
+                    <ContentPasteIcon />
+                    Copy Code
+                  </button>
                 </CodeDivHeader>
                 <p key={idx} style={{ margin: "0.5em 0" }}>{line}</p>
               </CodeDiv>
