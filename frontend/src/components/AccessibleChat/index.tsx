@@ -95,7 +95,40 @@ const AccessibleChat: React.FC = () => {
     document.body.removeChild(textArea);
   } 
 
-  function findCodeType(text: string) {
+  function processMessageContent(content: string): (string | JSX.Element)[] {
+    const segments: { type: 'text' | 'code', content: string }[] = [];
+    const lines = content.split('\n');
+    
+    let buffer: string[] = [];
+    let isCode: boolean = false;
+    
+    lines.forEach(line => {
+      if (line.startsWith('```')) {
+        if (isCode) {
+          buffer.push(line);
+          segments.push({ type: 'code', content: buffer.join('\n') });
+          buffer = [];
+        } else {
+          if (buffer.length) {
+            segments.push({ type: 'text', content: buffer.join('\n') });
+            buffer = [];
+          }
+          buffer.push(line);
+        }
+        isCode = !isCode;
+      } else {
+        buffer.push(line);
+      }
+    });
+  
+    if (buffer.length) {
+      segments.push({ type: isCode ? 'code' : 'text', content: buffer.join('\n') });
+    }
+  
+    return segments;
+  }
+  
+  function findCodeType(text: string): string {
     const codeTypeAbbreviation = text.slice(3, 6);
     if (codeTypeAbbreviation === 'jsx') return 'JavaScript';
     if (codeTypeAbbreviation === 'tsx') return 'TypeScript';
@@ -113,30 +146,33 @@ const AccessibleChat: React.FC = () => {
       onSubmit={(e) => handleSubmit(e, messages)}
     >
       <ResponseDiv id="responseDiv" >
-        {messages.map((message, index) => (
-          <MessageDiv 
-            key={index} 
-            role={message.role}
-            fontSize={fontSize}
-            content={message.content}
-          >
-            {message.content.split('\n').map((line, idx) => (
-              message.content.startsWith('```') && message.content.endsWith('```') ? 
-              <CodeDiv key={idx} content={message.content}>
-                <CodeDivHeader>
-                  <p>{findCodeType(message.content)}</p>
-                  <button onClick={() => copyToClipboard(line.slice(6, -3))}>
-                    <ContentPasteIcon />
-                    Copy Code
-                  </button>
-                </CodeDivHeader>
-                <p key={idx} style={{ margin: "0.5em 0" }}>{line}</p>
-              </CodeDiv>
-              :
-              <p key={idx} style={{ margin: "0.5em 0" }}>{line}</p>
-            ))}
-          </MessageDiv>
-        ))}
+        {messages.map((message, index) => {
+          const segments = processMessageContent(message.content);
+          return (
+            <MessageDiv key={index} role={message.role} fontSize={fontSize} content={message.content}>
+              {segments.map((segment, segIndex) => {
+                if (segment.type === 'code') {
+                  return (
+                    <CodeDiv key={segIndex}>
+                      <CodeDivHeader>
+                        <p>{findCodeType(segment.content)}</p>
+                        <button onClick={() => copyToClipboard(segment.content.slice(6, -3))}>
+                          <ContentPasteIcon />
+                          Copy Code
+                        </button>
+                      </CodeDivHeader>
+                      <p style={{ margin: "0.5em 0" }}>{segment.content}</p>
+                    </CodeDiv>
+                  );
+                } else {
+                  return segment.content.split('\n').map((line, idx) => (
+                    <p key={idx} style={{ margin: "0.5em 0" }}>{line}</p>
+                  ));
+                }
+              })}
+            </MessageDiv>
+          );
+        })}
         {messages.length > 0 && !isLoading && (
           <RegenerateButton
             disabled={messages.length < 1}

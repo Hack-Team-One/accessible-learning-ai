@@ -50,19 +50,25 @@ export const MessageDiv = styled.div<DynamicStylingProps>`
 `;
 
 export const CodeDiv = styled.div<DynamicStylingProps>`
-  background-color: ${(props) => (props.role === 'user' ? 'transparent' : props.theme.palette.custom.background.code)};
-  color: ${(props) => 
-    props.content?.slice(3, 6)} === 'css'
-      ? ${(props => props.theme.palette.custom.text.css)}
-      : ${(props => props.theme.palette.custom.text.code)}
+  background-color: ${props => props.theme.palette.custom.background.code};
+  color: ${props => 
+    props.content?.slice(3, 6) === 'css'
+      ? props.theme.palette.custom.text.css
+      : props.theme.palette.custom.text.code
   };
-  padding: '1em';
+  padding: 1em;
+  border-radius: 0.375rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `;
 
 export const CodeDivHeader = styled.div<DynamicStylingProps>`
   display: flex;
-  flexDirection: row;
-  background-color: '#808080'; // gray
+  justify-content: space-between;
+  background-color: #808080; // gray
+  padding: 0.5em;
+  border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
 `;
 
 export const PromptDiv = styled.div<DynamicStylingProps>`
