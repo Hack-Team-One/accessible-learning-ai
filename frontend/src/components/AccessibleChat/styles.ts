@@ -49,6 +49,28 @@ export const MessageDiv = styled.div<DynamicStylingProps>`
   margin-top: 20px;
 `;
 
+export const CodeDiv = styled.div<DynamicStylingProps>`
+  background-color: ${props => props.theme.palette.custom.background.code};
+  color: ${props => 
+    props.content?.slice(3, 6) === 'css'
+      ? props.theme.palette.custom.text.css
+      : props.theme.palette.custom.text.code
+  };
+  padding: 1em;
+  border-radius: 0.375rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
+
+export const CodeDivHeader = styled.div<DynamicStylingProps>`
+  display: flex;
+  justify-content: space-between;
+  background-color: #808080; // gray
+  padding: 0.5em;
+  border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+`;
+
 export const PromptDiv = styled.div<DynamicStylingProps>`
   display: flex;
   width: 100%;
@@ -96,12 +118,10 @@ export const RegenerateButton = styled(MUIButton)<DynamicStylingProps>`
   z-index: 1;
 `;
 
-// color: ${(props) => props.theme.palette.text.tertiary};
-//  background-color: ${(props) => props.theme.palette.background.buttonSecondary};
 export const SendButton = styled(MUIButton)<DynamicStylingProps>`
-color: ${(props) => props.theme.palette.text.primary};
-  background-color: ${(props) => props.theme.palette.custom.background.buttonSecondary};
-  // background-color: '#007FFF';
+  color: ${(props) => props.theme.palette.text.primary};
+  // background-color: ${(props) => props.theme.palette.custom.background.buttonSecondary};
+  background-color: '#007FFF';
   position: absolute;
   padding: 0.25rem;
   min-width: 7.5rem;
@@ -119,3 +139,25 @@ export const InfoText = styled.p<DynamicStylingProps>`
   color: rgba(107, 114, 128, 1);
   margin-bottom: 1rem;
 `;
+
+export const LoadingAnimation = styled.div<DynamicStylingProps>`
+  color: ${(props) => props.theme.palette.text.primary};
+  font-size: ${props => props?.fontSize?.text_xl}px;
+  animation: loading 1.5s infinite;
+
+  @keyframes loading {
+    0% {
+      content: ".";
+    }
+    33% {
+      content: "..";
+    }
+    66% {
+      content: "...";
+    }
+    100% {
+      content: "";
+    }
+  }
+`;
+
