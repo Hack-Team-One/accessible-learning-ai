@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { sendMessageToChatGPT, CHATGPT_MODEL } from '../../utils';
 import SendIcon from '@mui/icons-material/Send';
 import LoopIcon from '@mui/icons-material/Loop';
-import { Message } from '../../types';
+import { Message, Segment } from '../../types';
 import { validateMessages } from '../../utils/validation';
 import {
   FormContainer,
@@ -95,7 +95,7 @@ const AccessibleChat: React.FC = () => {
     document.body.removeChild(textArea);
   } 
 
-  function processMessageContent(content: string): (string | JSX.Element)[] {
+  function processMessageContent(content: string): Segment[] {
     const segments: { type: 'text' | 'code', content: string }[] = [];
     const lines = content.split('\n');
     
@@ -165,7 +165,7 @@ const AccessibleChat: React.FC = () => {
                     </CodeDiv>
                   );
                 } else {
-                  return segment.content.split('\n').map((line, idx) => (
+                  return segment.content.split('\n').map((line: string, idx: number) => (
                     <p key={idx} style={{ margin: "0.5em 0" }}>{line}</p>
                   ));
                 }
