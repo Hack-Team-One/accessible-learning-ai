@@ -106,7 +106,7 @@ const AccessibleChat: React.FC = () => {
       if (line.startsWith('```')) {
         if (isCode) {
           buffer.push(line);
-          segments.push({ type: 'code', content: buffer.join('\n') });
+          segments.push({ type: 'code', content: buffer.slice(1, -1).join('\n') }); // Remove the first and last lines
           buffer = [];
         } else {
           if (buffer.length) {
