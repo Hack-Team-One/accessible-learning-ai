@@ -20,8 +20,8 @@ jobs:
 #     uses: Hack-Team-One/accessible-learning-ai/.github/workflows/build-project.yml@main
 #     with:
 #       project: backend
-  build-frontend:
-    name: frontend
+  build-interface:
+    name: interface
     uses: Hack-Team-One/accessible-learning-ai/.github/workflows/build-project.yml@main
     with:
-      project: frontend
+      project: interface

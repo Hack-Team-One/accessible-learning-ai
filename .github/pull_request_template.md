@@ -1,17 +1,14 @@
 ## Ticket
-[Post a link to the corresponding ticket]
-
+[Link to GitHub issue]
 
 
 ## What does this PR do?
-[Provide a brief overview of the changes.]
-
+[Summary of changes]
 
 
 ## How was this PR tested?
-[Explain how the changes were tested and any additional testing steps needed, i.e updating cypress tests]
-
+[How changes were tested and what testing remains]
 
 
 ## Screenshots and/or Loom
-[Include any relevant screenshots or images to help reviewers understand the changes.]
+[Screenshots or Loom videos of changes]

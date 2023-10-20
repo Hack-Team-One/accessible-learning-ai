@@ -28,9 +28,7 @@ const AccessibleChat: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // TODO: Add "Loading ..." text for when loading is true
-  // Space out paragraphs within the reponse
-  // Make code appear differently and have copy feature
+  // TODO: 
   // Check if lineHeight is being adjusted accurately
   // Check if downsizing is working properly
   // Check why letter spacing is off
@@ -106,7 +104,8 @@ const AccessibleChat: React.FC = () => {
       if (line.startsWith('```')) {
         if (isCode) {
           buffer.push(line);
-          segments.push({ type: 'code', content: buffer.join('\n') });
+          // Remove the first and last lines
+          segments.push({ type: 'code', content: buffer.slice(1, -1).join('\n') });
           buffer = [];
         } else {
           if (buffer.length) {
