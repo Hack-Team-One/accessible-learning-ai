@@ -29,9 +29,9 @@ const AccessibleChat: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   // TODO: 
-  // Check if lineHeight is being adjusted accurately
-  // Check if downsizing is working properly
-  // Check why letter spacing is off
+  // Check lineHeight
+  // Check downsizing
+  // Check letter spacing
   // Add icons next to user and system messages
 
   const {
