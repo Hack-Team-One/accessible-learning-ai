@@ -29,19 +29,18 @@ function AccessSizeControl({
 
   const handleUpdateValue = (newValue: number) => {
     const fontSizeKeys: string[] = Object.keys(state)
-    const updatedFontSize: Record<string, number> = {};
-    const originalFontSize: Record<string, number> = {...defaultState};
+    const updatedStateSize: Record<string, number> = {};
+    const originalStateSize: Record<string, number> = {...defaultState};
 
     fontSizeKeys.forEach((key: string) => {
       const newMultiplier = Number(newValue.toFixed(1))
-      if (key === 'multiplier') updatedFontSize[key] = newMultiplier;
+      if (key === 'multiplier') updatedStateSize[key] = newMultiplier;
       else {
-        updatedFontSize[key] = Math.round(originalFontSize[key] * newMultiplier);
+        updatedStateSize[key] = parseFloat((originalStateSize[key] * newMultiplier).toFixed(4));
       }
     });
 
-
-    setState(Object.assign({...state}, updatedFontSize));
+    setState(Object.assign({...state}, updatedStateSize));
   };
 
   return (
