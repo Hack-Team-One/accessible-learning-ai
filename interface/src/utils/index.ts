@@ -4,7 +4,7 @@ import OpenAI from 'openai';
 
 export const CHATGPT_MODEL: string = process.env.NEXT_PUBLIC_CHATGPT_MODEL || 'gpt-3.5-turbo';
 export const MAX_TOKEN_LIMIT: number = parseInt(process.env.NEXT_PUBLIC_CHATGPT_MAX_TOKEN_LIMIT || '150');
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://dev.accessiblelearningai.com/';
 
 export const countAllTokens = async (messages: Message[]) => {
   const response = await fetch(`${BASE_URL}/api/countTokens`, {
