@@ -108,7 +108,7 @@ export const TextareaPrompt = styled(TextareaAutosize)<DynamicStylingProps>`
 
 export const RegenerateButton = styled(MUIButton)<DynamicStylingProps>`
   color: ${(props) => props.theme.palette.text.primary};
-  background-color: ${(props) => props.theme.palette.custom.background.buttonPrimary};
+  background-color: ${(props) => props.theme.palette.custom.background.primary};
   border: 1px solid ${props => props?.borderColor?.primary};
   border-radius: 0.375rem;
   padding: 0.25rem;
