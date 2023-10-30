@@ -10,6 +10,7 @@ type ChatGPTProps = {
 };
 
 export default async function chatGPT (req: NextApiRequest, res: NextApiResponse) {
+  console.log('starting chatGPT api call')
   const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
   const { 
     messages,

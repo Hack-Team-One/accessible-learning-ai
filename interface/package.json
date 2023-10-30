@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start -p $PORT",
     "lint": "next lint",
-    "export": "next build && next export"
+    "export": "next build && next export",
+    "setup-deploy": "chmod +x ./scripts/deploy.sh",
+    "deploy": "npm run setup-deploy && ./scripts/deploy.sh"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
