@@ -1,11 +1,12 @@
 #!/bin/bash
 
-# Deploy to AWS Elastic Beanstalk
-aws eb deploy
+# Run linter and build
+npm run eslint && npm run build
 
-# If the deployment was successful, notify QA Wolf
+# Check if linting and building were successful
 if [ $? -eq 0 ]; then
-    curl -H "Authorization: qawolf_7ce27862dbf74bc89101831fcd316af4" -H "Content-Type: application/json" https://app.qawolf.com/api/webhooks/deploy_success
+  # Deploy to AWS Elastic Beanstalk
+  eb deploy
 else
-    echo "Deployment failed. Not notifying QA Wolf."
+  echo "Linting or build failed. Not deploying."
 fi
