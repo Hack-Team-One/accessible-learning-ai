@@ -105,16 +105,7 @@ export default function AccessControlsModal({ open, onClose, slots}: ModalProps)
           </div>
           {/* <button onClick={toggleMode}>Toggle Theme</button> */}
         </Box>
-
       </Dialog>
-      {/* <StyledModal
-        aria-labelledby="unstyled-modal-title"
-        aria-describedby="unstyled-modal-description"
-        open={open}
-        onClose={onClose}
-        slots={{ backdrop: StyledBackdrop }}
-      > */}
-      {/* </StyledModal> */}
     </div>
   );
 }
