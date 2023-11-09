@@ -9,7 +9,8 @@
     "lint": "next lint",
     "export": "next build && next export",
     "setup-deploy": "chmod +x ./scripts/deploy.sh",
-    "deploy": "npm run setup-deploy && ./scripts/deploy.sh"
+    "deploy": "npm run setup-deploy && ./scripts/deploy.sh",
+    "test": "playwright test"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -33,5 +34,8 @@
     "recoil": "^0.7.7",
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2"
+  },
+  "devDependencies": {
+    "playwright": "^1.39.0"
   }
 }
