@@ -10,7 +10,7 @@
     "export": "next build && next export",
     "setup-deploy": "chmod +x ./scripts/deploy.sh",
     "deploy": "npm run setup-deploy && ./scripts/deploy.sh",
-    "test": "playwright test"
+    "test": "npx playwright test"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -36,6 +36,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.39.0",
     "playwright": "^1.39.0"
   }
 }
