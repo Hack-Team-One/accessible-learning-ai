@@ -68,53 +68,44 @@ export default function AccessControlsModal({ open, onClose, slots}: ModalProps)
           <span id="transition-modal-description" style={{ marginTop: 16 }} className={`${fontSize.text_base}`} >
             Adjust the following settings to make the website more accessible.
           </span>
-          <AccessProfiles />
+          {/* <AccessProfiles /> */}
           <div className="flex flex-col">
-          <AccessSizeControl
-            title="Content Scaling"
-            text="Default"
-            icon={<ZoomOutMapIcon />}
-            defaultState={defaultFontSizeState}
-            state={contentScaling}
-            setState={setContentScaling}
-          />
-          <AccessSizeControl
-            title="Adjust Font Sizing"
-            text="Default"
-            icon={<HeightIcon />}
-            defaultState={defaultFontSizeState}
-            state={fontSize}
-            setState={setFontSize}
-          />
-          <AccessSizeControl
-            title="Adjust Line Height"
-            text="Default"
-            icon={<FormatLineSpacingIcon />}
-            defaultState={defaultFontSizeState}
-            state={lineHeight}
-            setState={setLineHeight}
-          />
-          <AccessSizeControl 
-            title="Adjust Letter Spacing"
-            icon={<SyncAltIcon />}
-            text="Default"
-            defaultState={defaultFontSizeState}
-            state={letterSpacing}
-            setState={setLetterSpacing}
-          />
+            <AccessSizeControl
+              title="Content Scaling"
+              text="Default"
+              icon={<ZoomOutMapIcon />}
+              defaultState={defaultFontSizeState}
+              state={contentScaling}
+              setState={setContentScaling}
+            />
+            <AccessSizeControl
+              title="Adjust Font Sizing"
+              text="Default"
+              icon={<HeightIcon />}
+              defaultState={defaultFontSizeState}
+              state={fontSize}
+              setState={setFontSize}
+            />
+            <AccessSizeControl
+              title="Adjust Line Height"
+              text="Default"
+              icon={<FormatLineSpacingIcon />}
+              defaultState={defaultFontSizeState}
+              state={lineHeight}
+              setState={setLineHeight}
+            />
+            <AccessSizeControl 
+              title="Adjust Letter Spacing"
+              icon={<SyncAltIcon />}
+              text="Default"
+              defaultState={defaultFontSizeState}
+              state={letterSpacing}
+              setState={setLetterSpacing}
+            />
           </div>
           {/* <button onClick={toggleMode}>Toggle Theme</button> */}
         </Box>
-
       </Dialog>
-      {/* <StyledModal
-        aria-labelledby="unstyled-modal-title"
-        aria-describedby="unstyled-modal-description"
-        open={open}
-        onClose={onClose}
-        slots={{ backdrop: StyledBackdrop }}
-      > */}
-      {/* </StyledModal> */}
     </div>
   );
 }
