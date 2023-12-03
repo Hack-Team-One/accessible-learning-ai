@@ -7,7 +7,7 @@ export const MAX_TOKEN_LIMIT: number = parseInt(process.env.NEXT_PUBLIC_CHATGPT_
 
 // Helper function to get the base URL
 const getBaseUrl = () => {
-  return window.location.href.includes('localhost:3000') ? 'http://localhost:3000' : process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  return process.env.NODE_ENV === 'production' ? process.env.NEXT_PUBLIC_DEV_URL : process.env.NEXT_PUBLIC_LOCAL_URL;
 };
 
 const BASE_URL = getBaseUrl();
