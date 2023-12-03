@@ -2,14 +2,14 @@ import { DataSource } from 'typeorm';
 import { User } from '../../modules/users/entities/user.entity';
 
 export const AppDataSource = new DataSource({
-  type: 'postgres', // or another database type
-  host: 'localhost', // database host
-  port: 5432, // database port
-  username: 'username', // database username
-  password: 'password', // database password
-  database: 'database', // database name
-  entities: [User], // add all your entities here
-  synchronize: true, // set to false in production
+  type: (process.env.DATABASE_TYPE as any) || 'postgres',
+  host: process.env.DATABASE_HOST,
+  port: parseInt(process.env.DATABASE_PORT, 10),
+  username: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE_NAME,
+  entities: [User],
+  synchronize: process.env.DATABASE_SYNCHRONIZE === 'true',
 });
 
 AppDataSource.initialize()
