@@ -11,8 +11,8 @@ import { AppService } from './app.service';
     TypeOrmModule.forRoot({
       ...AppDataSource.options,
     }),
-    UsersModule,
     AuthModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
