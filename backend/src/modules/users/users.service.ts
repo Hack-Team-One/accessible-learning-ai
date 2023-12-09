@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from './entities/user.entity'; // Assuming you have a User entity defined
+import { User } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
@@ -24,5 +24,9 @@ export class UsersService {
     });
     await this.usersRepository.save(newUser);
     return newUser;
+  }
+
+  async findOne(criteria: Partial<User>): Promise<User | undefined> {
+    return this.usersRepository.findOneBy(criteria);
   }
 }
