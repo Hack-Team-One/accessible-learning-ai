@@ -5,7 +5,7 @@ import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { RateLimiterModule } from 'nestjs-rate-limiter';
+// Add any additional imports here
 
 @Module({
   imports: [
@@ -13,15 +13,13 @@ import { RateLimiterModule } from 'nestjs-rate-limiter';
       ...AppDataSource.options,
     }),
     AuthModule,
-    RateLimiterModule.register({
-      // You can customize these options
-      type: 'Memory',
-      points: 5, // Number of points
-      duration: 60, // Duration in seconds
-    }),
+    // Add ConfigurationModule, other modules, and any additional setup here
     UsersModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    // Add global guards, interceptors, pipes, logging, and monitoring providers here
+  ],
 })
 export class AppModule {}
