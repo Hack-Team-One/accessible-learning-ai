@@ -1,4 +1,3 @@
-// pages/register.tsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, TextField, Container, Typography, IconButton, InputAdornment } from '@mui/material';
