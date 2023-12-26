@@ -10,7 +10,7 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
-  async createUser(
+  async create(
     email: string,
     password: string,
     firstName: string,
@@ -28,5 +28,9 @@ export class UsersService {
 
   async findOne(criteria: Partial<User>): Promise<User | undefined> {
     return this.usersRepository.findOneBy(criteria);
+  }
+
+  async generateEmailVerificationCode(): Promise<string> {
+    return Math.random().toString(36).substring(2, 15);
   }
 }

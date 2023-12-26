@@ -16,6 +16,11 @@ export class UsersController {
     },
   ) {
     const { email, password, firstName, lastName } = userData;
-    return this.usersService.createUser(email, password, firstName, lastName);
+    return this.usersService.create(email, password, firstName, lastName);
   }
+
+  // @Get()
+  // async getAllUsers() {
+  //   return this.usersService.findAll();
+  // }
 }
