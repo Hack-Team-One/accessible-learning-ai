@@ -1,10 +1,28 @@
-import { Controller, Post, UseGuards, Request } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards, Request } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './localAuth.guard';
+import { RegisterDTO } from './dto/registerDto';
+import { UsersService } from '../users/users.service';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private usersService: UsersService,
+  ) {}
+
+  @Post('register')
+  async register(
+    @Body() registerDto: RegisterDTO,
+  ): Promise<{ userId: number }> {
+    const user = await this.usersService.create(
+      registerDto.email,
+      registerDto.password,
+      registerDto.firstName,
+      registerDto.lastName,
+    );
+    return { userId: user.id };
+  }
 
   // @ApiEndpoint({
   //   tags: ['Auth'],
