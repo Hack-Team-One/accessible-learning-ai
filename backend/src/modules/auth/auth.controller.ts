@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './localAuth.guard';
 import { RegisterDTO } from './dto/registerDto';
 import { UsersService } from '../users/users.service';
+import { UserInsert, SYSTEM_USER } from '../users/entities/user.entity';
 
 @Controller('auth')
 export class AuthController {
@@ -11,16 +12,15 @@ export class AuthController {
     private usersService: UsersService,
   ) {}
 
-  @Post('register')
-  async register(
-    @Body() registerDto: RegisterDTO,
-  ): Promise<{ userId: number }> {
-    const user = await this.usersService.create(
-      registerDto.email,
-      registerDto.password,
-      registerDto.firstName,
-      registerDto.lastName,
-    );
+  @Post('auth/register')
+  async register(@Body() payload: RegisterDTO): Promise<{ userId: number }> {
+    const userData: UserInsert = {
+      ...payload,
+      emailVerificationCode,
+      createdBy: SYSTEM_USER,
+    };
+    const user = await this.usersService.create(userData);
+
     return { userId: user.id };
   }
 
@@ -110,7 +110,7 @@ export class AuthController {
   // }
 
   @UseGuards(LocalAuthGuard)
-  @Post('login')
+  @Post('auth/login')
   async login(@Request() req) {
     // 'req.user' contains the authenticated user information after passing LocalAuthGuard
     return this.authService.login(req.user);

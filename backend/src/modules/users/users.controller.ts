@@ -5,19 +5,19 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post()
-  async addUser(
-    @Body()
-    userData: {
-      email: string;
-      password: string;
-      firstName: string;
-      lastName: string;
-    },
-  ) {
-    const { email, password, firstName, lastName } = userData;
-    return this.usersService.create(email, password, firstName, lastName);
-  }
+  // @Post('users/create')
+  // async addUser(
+  //   @Body()
+  //   userData: {
+  //     email: string;
+  //     password: string;
+  //     firstName: string;
+  //     lastName: string;
+  //   },
+  // ) {
+  //   const { email, password, firstName, lastName } = userData;
+  //   return this.usersService.create(email, password, firstName, lastName);
+  // }
 
   // @Get()
   // async getAllUsers() {
