@@ -28,8 +28,19 @@ export class UsersService {
     return newUser;
   }
 
-  async findOne(criteria: Partial<User>): Promise<User | undefined> {
-    return this.usersRepository.findOneBy(criteria);
+  async findAll(): Promise<User[]> {
+    return this.usersRepository.find();
+  }
+
+  async findById(id: number): Promise<User | undefined> {
+    return this.usersRepository.findOneBy({ id });
+  }
+
+  async findByField<F extends keyof User>(
+    field: F,
+    value: User[F],
+  ): Promise<User[]> {
+    return this.usersRepository.findBy({ [field]: value });
   }
 
   async generateEmailVerificationCode(): Promise<string> {

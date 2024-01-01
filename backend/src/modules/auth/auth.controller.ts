@@ -1,9 +1,17 @@
-import { Body, Controller, Post, UseGuards, Request, BadRequestException } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  UseGuards,
+  Request,
+  BadRequestException,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './localAuth.guard';
 import { RegisterDTO } from './dto/registerDto';
 import { UsersService } from '../users/users.service';
 import { UserInsert, SYSTEM_USER } from '../users/entities/user.entity';
+import { firstItem } from 'src/shared/type-helpers';
 
 @Controller('auth')
 export class AuthController {
