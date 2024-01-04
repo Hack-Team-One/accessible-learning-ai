@@ -92,7 +92,7 @@ export type AuditableEntityInsert<
   E extends AuditableEntity,
   // TODO: [TYPE] limit I so that it can only have keys in E
   I extends QueryDeepPartialEntity<E> = QueryDeepPartialEntity<E>,
-> = WithAlteredRequired<I, 'createdBy', UserWithIdOrSystemUser>
+> = WithAlteredRequired<I, 'createdBy', UserWithIdOrSystemUser>;
 
 export type AuditableEntityUpdates<T extends AuditableEntity> =
   WithAlteredRequired<
@@ -100,7 +100,7 @@ export type AuditableEntityUpdates<T extends AuditableEntity> =
     'updatedBy',
     | WithAlteredRequired<QueryDeepPartialEntity<User>, 'id', User['id']>
     | SystemUser
->;
+  >;
 
 export type AuditableEntityDeleteUpdates<T extends AuditableEntity> =
   WithAlteredRequired<
@@ -121,7 +121,9 @@ type Enum<E> = Record<keyof E, number | string> & Record<number, keyof E>;
 // TODO: [TYPE] check that E is an enum
 export type AuditableEntityRelations<E> = AuditableEntityRelationsBasic | E;
 
-export function createAuditableEntityRelations<E extends Enum<E>>(enumBasic: E) {
+export function createAuditableEntityRelations<E extends Enum<E>>(
+  enumBasic: E,
+) {
   return {
     ...AuditableEntityRelationsBasic,
     ...enumBasic,

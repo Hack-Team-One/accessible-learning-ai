@@ -12,6 +12,7 @@ import { RegisterDTO } from './dto/registerDto';
 import { UsersService } from '../users/users.service';
 import { UserInsert, SYSTEM_USER } from '../users/entities/user.entity';
 import { firstItem } from 'src/shared/type-helpers';
+import { ServerErrors } from 'src/shared/serverErrors';
 
 @Controller('auth')
 export class AuthController {
