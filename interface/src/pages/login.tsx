@@ -4,13 +4,15 @@ import { Button, TextField, Container, Typography, IconButton, InputAdornment } 
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import Joi from 'joi';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [emailError, setEmailError] = useState(false);
+
+  const router = useRouter();
 
   const schema = Joi.object({
     email: Joi.string().email({ tlds: { allow: false } }).required(),
@@ -63,7 +65,13 @@ export default function Login() {
         Login
       </Button>
       <Typography variant="body1" marginTop={2}>
-        If you do not have an account yet, please <Link href="/register"><a>Sign Up</a></Link>.
+        If you do not have an account yet, please 
+        <Button 
+          color="primary" 
+          onClick={() => router.push('/register')}
+        >
+          Sign Up
+        </Button>.
       </Typography>
     </Container>
   );
