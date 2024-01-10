@@ -43,8 +43,12 @@ export class UsersService {
     return this.usersRepository.findBy({ [field]: value });
   }
 
-  async generateEmailVerificationCode(): Promise<string> {
-    return Math.random().toString(36).substring(2, 15);
+  generateEmailVerificationCode() {
+    return generateRandomCodeOrToken();
+  }
+
+  generateResetPasswordCode() {
+    return generateRandomCodeOrToken();
   }
 
   // ^ incorporate this into the create user && register auth service functions
