@@ -4,6 +4,7 @@ import { Button, TextField, Container, Typography, IconButton, InputAdornment } 
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import Joi from 'joi';
+import { http } from '../utils/httpService';
 
 export default function Register() {
   const [email, setEmail] = useState('');
@@ -32,12 +33,11 @@ export default function Register() {
 
     if (!error) {
       try {
-        const response = await axios.post('/api/register', { email, password, firstName, lastName });
+        const response = await http.post('/api/register', { email, password, firstName, lastName });
         console.log('User registered:', response.data);
         // Handle success (e.g., navigate to login page or dashboard)
-      } catch (error) {
-        console.error('Registration error:', error);
-        // Handle error (e.g., show error message)
+      } catch (err) {
+        console.error('Error:', err)
       }
     }
   };
