@@ -88,17 +88,24 @@ export type AuditableEntityInsert<
   E extends AuditableEntity,
   // TODO: [TYPE] limit I so that it can only have keys in E
   I extends QueryDeepPartialEntity<E> = QueryDeepPartialEntity<E>,
-> = WithAlteredRequired<I, 'createdBy', UserWithIdOrSystemUser>;
+  K extends keyof I = keyof I,
+> = WithAlteredRequired<I, K & 'createdBy', UserWithIdOrSystemUser>;
 
-export type AuditableEntityUpdates<T extends AuditableEntity> = WithAlteredRequired<
+export type AuditableEntityUpdates<
+  T extends AuditableEntity,
+  K extends keyof QueryDeepPartialEntity<T> = keyof QueryDeepPartialEntity<T>,
+> = WithAlteredRequired<
   QueryDeepPartialEntity<T>,
-  'updatedBy',
+  K & 'updatedBy',
   WithAlteredRequired<QueryDeepPartialEntity<User>, 'id', User['id']> | SystemUser
 >;
 
-export type AuditableEntityDeleteUpdates<T extends AuditableEntity> = WithAlteredRequired<
+export type AuditableEntityDeleteUpdates<
+  T extends AuditableEntity,
+  L extends keyof QueryDeepPartialEntity<T> = keyof QueryDeepPartialEntity<T>,
+> = WithAlteredRequired<
   QueryDeepPartialEntity<T>,
-  'deletedBy',
+  L & 'deletedBy',
   WithAlteredRequired<QueryDeepPartialEntity<User>, 'id', User['id']> | SystemUser
 >;
 

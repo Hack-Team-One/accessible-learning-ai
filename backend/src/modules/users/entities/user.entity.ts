@@ -5,11 +5,7 @@ import {
   AuditableEntityInsert,
   NOT_DELETED_CONDITION_SQL_QUOTED,
 } from 'src/shared/entities/auditable-entity';
-import {
-  InsertDefaults,
-  OmitProps,
-  PickAltered,
-} from 'src/shared/type-helpers';
+import { InsertDefaults, OmitProps, PickAltered } from 'src/shared/type-helpers';
 
 export type SystemUser = null;
 export type UserWithId = Pick<User, 'id'>;
@@ -90,9 +86,11 @@ export type UserInsert = AuditableEntityInsert<
   OmitProps<
     InsertDefaults<User, 'emailVerified'>,
     // these are altered below
-    'password' | 'email'
+    'password' | 'email' | 'emailVerificationCode' | 'firstName' | 'lastName'
   > &
-    // password and email must be strings
     PickAltered<User, 'password', string> &
-    PickAltered<User, 'email', string>
+    PickAltered<User, 'email', string> &
+    PickAltered<User, 'emailVerificationCode', string> &
+    PickAltered<User, 'firstName', string> &
+    PickAltered<User, 'lastName', string> & { createdBy: UserWithIdOrSystemUser }
 >;

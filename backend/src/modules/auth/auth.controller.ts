@@ -1,18 +1,11 @@
-import {
-  Body,
-  Controller,
-  Post,
-  UseGuards,
-  Request,
-  BadRequestException,
-} from '@nestjs/common';
+import { Body, Controller, Post, UseGuards, Request, BadRequestException } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './localAuth.guard';
 import { RegisterDTO } from './dto/registerDto';
 import { UsersService } from '../users/users.service';
-import { UserInsert, SYSTEM_USER } from '../users/entities/user.entity';
-import { firstItem } from 'src/shared/type-helpers';
+import { SYSTEM_USER, UserInsert } from '../users/entities/user.entity';
 import { ServerErrors } from 'src/shared/serverErrors';
+import { User } from '../users/entities/user.entity';
 
 @Controller('auth')
 export class AuthController {
@@ -23,22 +16,20 @@ export class AuthController {
 
   @Post('auth/register')
   async register(@Body() payload: RegisterDTO): Promise<{ userId: number }> {
-    const emailVerificationCode =
-      this.usersService.generateEmailVerificationCode();
+    const emailVerificationCode = this.usersService.generateEmailVerificationCode();
+    const createdBy: User = SYSTEM_USER;
 
-    const userWithEmailFromPayload = firstItem(
-      await this.usersService.findByField('email', payload.email),
-    );
-
-    if (userWithEmailFromPayload) {
+    const userWithEmail = await this.usersService.findByField('email', payload.email);
+    if (userWithEmail.length > 0) {
       throw new BadRequestException(ServerErrors.EMAIL_EXISTS);
     }
 
     const userData: UserInsert = {
       ...payload,
       emailVerificationCode,
-      createdBy: SYSTEM_USER,
+      createdBy,
     };
+
     const user = await this.usersService.create(userData);
 
     return { userId: user.id };
