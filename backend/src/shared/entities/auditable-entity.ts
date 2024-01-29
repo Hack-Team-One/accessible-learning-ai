@@ -1,8 +1,4 @@
-import {
-  SystemUser,
-  User,
-  UserWithIdOrSystemUser,
-} from 'src/modules/users/entities/user.entity';
+import { SystemUser, User, UserWithIdOrSystemUser } from 'src/modules/users/entities/user.entity';
 import {
   BaseEntity,
   Column,
@@ -92,23 +88,26 @@ export type AuditableEntityInsert<
   E extends AuditableEntity,
   // TODO: [TYPE] limit I so that it can only have keys in E
   I extends QueryDeepPartialEntity<E> = QueryDeepPartialEntity<E>,
-> = WithAlteredRequired<I, 'createdBy', UserWithIdOrSystemUser>;
+  K extends keyof I = keyof I,
+> = WithAlteredRequired<I, K & 'createdBy', UserWithIdOrSystemUser>;
 
-export type AuditableEntityUpdates<T extends AuditableEntity> =
-  WithAlteredRequired<
-    QueryDeepPartialEntity<T>,
-    'updatedBy',
-    | WithAlteredRequired<QueryDeepPartialEntity<User>, 'id', User['id']>
-    | SystemUser
-  >;
+export type AuditableEntityUpdates<
+  T extends AuditableEntity,
+  K extends keyof QueryDeepPartialEntity<T> = keyof QueryDeepPartialEntity<T>,
+> = WithAlteredRequired<
+  QueryDeepPartialEntity<T>,
+  K & 'updatedBy',
+  WithAlteredRequired<QueryDeepPartialEntity<User>, 'id', User['id']> | SystemUser
+>;
 
-export type AuditableEntityDeleteUpdates<T extends AuditableEntity> =
-  WithAlteredRequired<
-    QueryDeepPartialEntity<T>,
-    'deletedBy',
-    | WithAlteredRequired<QueryDeepPartialEntity<User>, 'id', User['id']>
-    | SystemUser
-  >;
+export type AuditableEntityDeleteUpdates<
+  T extends AuditableEntity,
+  L extends keyof QueryDeepPartialEntity<T> = keyof QueryDeepPartialEntity<T>,
+> = WithAlteredRequired<
+  QueryDeepPartialEntity<T>,
+  L & 'deletedBy',
+  WithAlteredRequired<QueryDeepPartialEntity<User>, 'id', User['id']> | SystemUser
+>;
 
 export enum AuditableEntityRelationsBasic {
   CREATED_BY = 'createdBy',
@@ -121,9 +120,7 @@ type Enum<E> = Record<keyof E, number | string> & Record<number, keyof E>;
 // TODO: [TYPE] check that E is an enum
 export type AuditableEntityRelations<E> = AuditableEntityRelationsBasic | E;
 
-export function createAuditableEntityRelations<E extends Enum<E>>(
-  enumBasic: E,
-) {
+export function createAuditableEntityRelations<E extends Enum<E>>(enumBasic: E) {
   return {
     ...AuditableEntityRelationsBasic,
     ...enumBasic,

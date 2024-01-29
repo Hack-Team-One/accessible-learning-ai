@@ -17,4 +17,8 @@ export class RegisterDTO {
   @IsNotEmpty()
   @IsString()
   lastName: string;
+
+  @IsNotEmpty()
+  @IsString()
+  emailVerificationCode: string;
 }
